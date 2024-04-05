@@ -6,7 +6,7 @@ RM = rm -rf
 
 NAME = ex00
 
-SRCS = main.cpp srcs/Bureaucrat.cpp
+SRCS = main.cpp srcs/Bureaucrat.cpp srcs/Form.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

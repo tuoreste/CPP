@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 23:19:45 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/03 00:23:45 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:56:20 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@
 
 class Bureaucrat {
 	public:
+		Bureaucrat();
 		Bureaucrat(const std::string &name, int grade);
+		~Bureaucrat();
+		Bureaucrat(const Bureaucrat& other);
+    	Bureaucrat& operator=(const Bureaucrat& other);
 		std::string	getName(void) const;
 		int			getGrade(void) const;
 		void		increments(int gradeUp);

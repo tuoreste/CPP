@@ -5,12 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 23:19:50 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/03 00:24:12 by otuyishi         ###   ########.fr       */
+/*   Created: 2024/04/03 16:23:16 by otuyishi          #+#    #+#             */
+/*   Updated: 2024/04/04 03:10:44 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Bureaucrat.hpp"
+#include "../includes/AForm.hpp"
+
+Bureaucrat::Bureaucrat() : _Name("default"), _Grade(0) {}
 
 Bureaucrat::Bureaucrat(const std::string &name, int grade):
 	_Name(name) , _Grade(grade)
@@ -19,6 +22,16 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade):
 		throw std::string("Bureaucrat::GradeTooHighException");
 	if (grade > 150)
 		throw std::string("Bureaucrat::GradeTooLowException");
+}
+
+Bureaucrat::~Bureaucrat(){};
+ 
+Bureaucrat::Bureaucrat(const Bureaucrat& other) : _Name(other._Name), _Grade(other._Grade){}
+
+Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& other){
+	if (this != &other)
+		_Grade = other._Grade;
+	return (*this);
 }
 
 std::string	Bureaucrat::getName(void) const {
@@ -47,4 +60,26 @@ std::ostream& operator<<(std::ostream& input, Bureaucrat const& Bureaucrat)
 {
 	input << Bureaucrat.getName() << ", bureaucrat grade " << Bureaucrat.getGrade();
 	return (input);
+}
+
+void		Bureaucrat::signForm(AForm& form) {
+	try
+	{
+		form.beSigned(*this);
+		std::cout << getName() << " signed " << form.get_Name() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << getName() << " couldn't sign " << form.get_Name() << " because of " << e.what() << std::endl;
+	}
+}
+
+void	Bureaucrat::executeForm(AForm const & form) {
+	try {
+		form.execute(*this);
+		std::cout << getName() << " executed " << form.get_Name() << std::endl;
+	}
+	catch (const std::string & e) {
+		std::cout << getName() << " couldn't execute " << form.get_Name() << " because of " << e << std::endl;
+	}
 }
