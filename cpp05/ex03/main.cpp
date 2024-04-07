@@ -6,10 +6,11 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 02:19:33 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/06 13:30:46 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/06 15:46:28 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "includes/Intern.hpp"
 #include "includes/AForm.hpp"
 #include "includes/Bureaucrat.hpp"
 #include "includes/PresidentialPardonForm.hpp"
@@ -18,36 +19,39 @@
 
 int	main()
 {
-	Bureaucrat				X("Jado", 100);
-	Bureaucrat				Y("Kumbani", 145);
+	Bureaucrat				x("Jado", 100);
 
-	ShrubberyCreationForm	shrubbery_form("garden_Y");
-	PresidentialPardonForm	presidents_form("Mr.Y");
-	RobotomyRequestForm		robot_form("robot_Y");
-
-	std::cout << std::endl;
-	Y.executeForm(shrubbery_form);
+	Intern					student_intern;
 	std::cout << std::endl;
 
 	std::cout << "=======ShrubberyCreationForm=======" << std::endl;
-	shrubbery_form.beSigned(Y);
-	Y.executeForm(shrubbery_form);
-	std::cout << std::endl;
+	AForm *shrubbery = student_intern.makeForm("Shrubbery Creation", "42");
+	x.signForm(*shrubbery);
+	x.executeForm(*shrubbery);
+	
 
 	std::cout << "=======PresidentialPardonForm=======" << std::endl;
-	presidents_form.beSigned(Y);
-	Y.executeForm(presidents_form);
-	std::cout << std::endl;
+	x.increments(97);
+	std::cout << x << std::endl;
+	AForm *pardon = student_intern.makeForm("Presidential Pardon", "John Doe");
+	x.signForm(*pardon);
+	x.executeForm(*pardon);
 
 	std::cout << "=======RobotomyRequestForm=======" << std::endl;
-	robot_form.beSigned(Y);
-	Y.executeForm(robot_form);
-	std::cout << std::endl;
-
-	std::cout << "=======Forms below would throw error=======" << std::endl;
+	x.decrements(50);
+	std::cout << x << std::endl;
+	AForm *robotomy = student_intern.makeForm("Robotomy Request", "Car");
+	x.signForm(*robotomy);
+	x.executeForm(*robotomy);
+	
+	std::cout << "=======Intern can't create illegal form=======" << std::endl;
 	try {
-		X.executeForm(shrubbery_form);
+		AForm *not_valid = student_intern.makeForm("Invalid", "42");
+		std::cout << not_valid << std::endl;
 	} catch (const std::string & e) {
 		std::cout << e << std::endl;
 	}
+	delete shrubbery;
+	delete pardon;
+	delete robotomy;
 }

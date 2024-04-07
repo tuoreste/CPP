@@ -6,14 +6,18 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:30:00 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/03 20:10:37 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/06 11:51:31 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Form.hpp"
 #include "../includes/Bureaucrat.hpp"
 
-Form::Form() : _Name("Default"), _Signature("Default"), _Sign_grade(0), _Exec_grade(0) {}
+Form::High::High(const std::string str_sms) : runtime_error(str_sms) {}
+
+Form::Low::Low(const std::string str_sms) : runtime_error(str_sms) {}
+
+Form::Form() : _Name("Default"), _Signature(false), _Sign_grade(0), _Exec_grade(0) {}
 
 Form::~Form(){}
 
@@ -21,13 +25,13 @@ Form::Form(const std::string &name, const int sign_grade, const int exec_grade) 
 	_Name(name), _Signature(false), _Sign_grade(sign_grade), _Exec_grade(exec_grade)
 {
 	if (sign_grade < 1)
-		throw std::string("Form::GradeTooHighException");
+		throw Form::High("Exception: " + name + " 's Sign grade is Too High");
 	if (exec_grade < 1)
-		throw std::string("Form::GradeTooHighException");
+		throw Form::High("Exception: " + name + " 's Exec grade is Too High");
 	if (sign_grade > 150)
-		throw std::string("Form::GradeTooLowException");
+		throw Bureaucrat::Low("Exception: " + name + " 's Sign grade is Too Low");
 	if (exec_grade > 150)
-		throw std::string("Form::GradeTooLowException");
+		throw Bureaucrat::Low("Exception: " + name + " 's Exec grade is Too Low");
 }
 
 Form::Form(const Form& other) : _Name(other._Name), _Signature(other._Signature), 
@@ -61,7 +65,7 @@ int			Form::get_Exec_grade(void) const
 
 std::ostream&	operator<<(std::ostream& output, Form const Form)
 {
-	output << "Form name: " << Form.get_Name() << "\nForm sign grade: "<< Form.get_Sign_grade() << "\nForm Execution Grade: " <<  Form.get_Exec_grade() << "\nSIGNED AND EXECUTED SUCCESSFULLY";
+	output << "Form name: " << Form.get_Name() << "\nIs signed: " << (Form.get_Signature() ? "True" : "False") <<  "\nForm sign grade: "<< Form.get_Sign_grade() << "\nForm Execution Grade: " <<  Form.get_Exec_grade();
 	return (output);
 }
 
@@ -70,5 +74,5 @@ void	Form::beSigned(const Bureaucrat& bureaucrat)
 	if (bureaucrat.getGrade() <= get_Sign_grade())
 		this->_Signature = true;
 	else
-		throw std::string("Form::GradeTooLowException");
+		throw Bureaucrat::Low("Exception: " + get_Name() + " 's grade is Too Low");
 }

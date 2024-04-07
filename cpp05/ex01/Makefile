@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes -fsanitize=address
 
 RM = rm -rf
 
-NAME = ex00
+NAME = ex01
 
 SRCS = main.cpp srcs/Bureaucrat.cpp srcs/Form.cpp
 

@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/03 16:23:39 by otuyishi          #+#    #+#              #
-#    Updated: 2024/04/06 12:31:50 by otuyishi         ###   ########.fr        #
+#    Created: 2024/04/06 16:35:45 by otuyishi          #+#    #+#              #
+#    Updated: 2024/04/06 16:37:31 by otuyishi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,9 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes -fsanitize=address
 
 RM = rm -rf
 
-NAME = ex02
+NAME = ex00
 
-SRCS = main.cpp srcs/Bureaucrat.cpp srcs/AForm.cpp \
-		srcs/PresidentialPardonForm.cpp srcs/RobotomyRequestForm.cpp \
-		srcs/ShrubberyCreationForm.cpp
+SRCS = main.cpp srcs/Converter.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -33,7 +31,7 @@ $(NAME): $(OBJS)
 		${CC} ${CFLAGS} -c $< -o $@
 
 clean:
-		$(RM) $(OBJS) ex00
+		$(RM) $(OBJS)
 
 fclean: clean
 		$(RM) $(NAME)

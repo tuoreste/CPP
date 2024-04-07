@@ -1,5 +1,10 @@
 {
 	"files.associations": {
+		"exception": "cpp",
+		"iosfwd": "cpp",
+		"stdexcept": "cpp",
+		"string": "cpp",
+		"typeinfo": "cpp",
 		"__bit_reference": "cpp",
 		"__config": "cpp",
 		"__debug": "cpp",
@@ -34,13 +39,11 @@
 		"cwchar": "cpp",
 		"cwctype": "cpp",
 		"deque": "cpp",
-		"exception": "cpp",
 		"fstream": "cpp",
 		"functional": "cpp",
 		"initializer_list": "cpp",
 		"iomanip": "cpp",
 		"ios": "cpp",
-		"iosfwd": "cpp",
 		"iostream": "cpp",
 		"istream": "cpp",
 		"iterator": "cpp",
@@ -55,18 +58,13 @@
 		"ratio": "cpp",
 		"sstream": "cpp",
 		"stack": "cpp",
-		"stdexcept": "cpp",
 		"streambuf": "cpp",
-		"string": "cpp",
 		"string_view": "cpp",
 		"system_error": "cpp",
 		"tuple": "cpp",
 		"type_traits": "cpp",
-		"typeinfo": "cpp",
 		"unordered_map": "cpp",
 		"utility": "cpp",
-		"vector": "cpp",
-		"filesystem": "cpp"
-	},
-	"files.autoSave": "onWindowChange"
+		"vector": "cpp"
+	}
 }

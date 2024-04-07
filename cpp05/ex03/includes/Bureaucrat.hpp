@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 23:19:45 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/05 16:19:42 by otuyishi         ###   ########.fr       */
+/*   Created: 2024/04/03 16:22:45 by otuyishi          #+#    #+#             */
+/*   Updated: 2024/04/05 13:52:01 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@
 #include <string>
 #include <exception>
 
+class AForm;
+
 class Bureaucrat {
 	public:
 		Bureaucrat();
 		Bureaucrat(const std::string &name, int grade);
-		~Bureaucrat();
 		Bureaucrat(const Bureaucrat& other);
-		Bureaucrat& operator=(const Bureaucrat& other);
+    	Bureaucrat& operator=(const Bureaucrat& other);
+		~Bureaucrat();
+
 		std::string	getName(void) const;
 		int			getGrade(void) const;
 		void		increments(int gradeUp);
 		void		decrements(int gradeDown);
-		struct High: public std::runtime_error {
-			High(const std::string str_sms);
-		};
-		struct Low: public std::runtime_error {
-			Low(const std::string str_sms);
-		};
+
+		void		signForm(AForm& form);
+		void		executeForm(AForm const & form);
 
 	private:
 		const std::string	_Name;

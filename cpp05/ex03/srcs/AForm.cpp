@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 20:16:56 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/06 13:29:42 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/06 15:50:52 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,7 @@ int			AForm::get_Exec_grade(void) const
 void	AForm::beSigned(const Bureaucrat& bureaucrat)
 {
 	if (bureaucrat.getGrade() <= get_Sign_grade())
-	{
 		this->_Signature = true;
-		std::cout << bureaucrat.getName() << " signed form: " << (get_Signature() ? "True" : "False") << std::endl;
-	}
 	else
 		throw std::string("AForm::GradeTooLowException");
 }
@@ -82,7 +79,7 @@ void	AForm::checkFormAction(Bureaucrat const & executor) const {
 	if (!get_Signature()){
 		throw std::string("Form is not signed");
 	}
-	if (executor.getGrade() < get_Sign_grade()){
+	if (executor.getGrade() > get_Sign_grade()){
         throw std::string("Bureaucrat's grade is too low to execute the form");
 	}
 }

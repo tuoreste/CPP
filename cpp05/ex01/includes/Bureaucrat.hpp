@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 23:19:45 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/03 19:50:24 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/05 16:42:45 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ class Bureaucrat {
 		void		increments(int gradeUp);
 		void		decrements(int gradeDown);
 		void		signForm(Form& form);
+		struct High: public std::runtime_error {
+			High(const std::string str_sms);
+		};
+		struct Low: public std::runtime_error {
+			Low(const std::string str_sms);
+		};
 
 	private:
 		const std::string	_Name;
