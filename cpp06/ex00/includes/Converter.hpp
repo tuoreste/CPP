@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 16:35:41 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/08 10:36:30 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:07:21 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ struct data
 	double			flot;
 	long double		dble;
 };
-
 
 class ScalarConverter {
 	public:
