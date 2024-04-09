@@ -6,35 +6,30 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 16:39:36 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/09 11:22:15 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:14:55 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/Base.hpp"
+#include "includes/Serializer.hpp"
 
-int main() {
-	
-	// Generate a random object
-	Base* obj = generate();
-	// D*	d = new D; // example fail
+int main()
+{
+	// Create a Data object
+	Data data;
+	data.ptr = "Hello, World!";
+	data.serialized = 12345;
 
-	// Identify the type of the object using pointer
-	std::cout << "Using pointer: ";
-	identify(obj);
-	std::cout << std::endl;
+	// Serialize the Data object
+	uintptr_t serializedData = Serializer::serialize(&data);
 
-	// Identify the type of the object using reference
-	std::cout << "Using reference: ";
-	identify(*obj);
-	std::cout << std::endl;
+	// Deserialize the serialized data
+	Data* deserializedData = Serializer::deserialize(serializedData);
 
-	// //meant to fail
-	// std::cout << "Using reference: ";
-	// identify(*d);
-	// std::cout << std::endl;
-	// delete d;
-
-	delete obj;
-
+	// Verify that deserializedData is the same as the original data
+	if (deserializedData->ptr == data.ptr && deserializedData->serialized == data.serialized) {
+		std::cout << "Serialization and deserialization succeeded." << std::endl;
+	} else {
+		std::cerr << "Serialization and deserialization failed." << std::endl;
+	}
 	return 0;
 }

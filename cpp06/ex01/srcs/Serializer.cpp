@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   Serializer.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 15:48:48 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/09 11:24:31 by otuyishi         ###   ########.fr       */
+/*   Created: 2024/04/08 14:05:19 by otuyishi          #+#    #+#             */
+/*   Updated: 2024/04/09 11:20:36 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE_H
-# define BASE_H
+#include "../includes/Serializer.hpp"
 
-#include <iostream>
-#include <string>
+Serializer::~Serializer(){};
 
-class Base {
-	public:
-		virtual	~Base(){}
+Serializer::Serializer(const Serializer& other){
+	(void)other;
 };
 
-class A : public Base {};
+uintptr_t Serializer::serialize(Data* ptr){
+	return (reinterpret_cast<uintptr_t>(ptr));
+}
 
-class B : public Base {};
-
-class C : public Base {};
-
-// class D : public Base {}; //example to fail
-
-Base	*generate(void);
-void identify(Base *p);
-void identify(Base& p);
-
-#endif
+Data* Serializer::deserialize(uintptr_t raw){
+	return (reinterpret_cast<Data*>(raw));
+}

@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   Serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 15:48:48 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/09 11:24:31 by otuyishi         ###   ########.fr       */
+/*   Created: 2024/04/08 14:03:58 by otuyishi          #+#    #+#             */
+/*   Updated: 2024/04/09 12:48:38 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE_H
-# define BASE_H
+#ifndef SERIALIZER_H
+# define SERIALIZER_H
 
-#include <iostream>
-#include <string>
+# include <iostream>
+# include <exception>
+# include <cstdlib>
+#include <stdint.h>
 
-class Base {
-	public:
-		virtual	~Base(){}
+struct Data {
+	const char		*ptr;
+	uintptr_t	serialized;
 };
 
-class A : public Base {};
+class Serializer {
+	public:
 
-class B : public Base {};
-
-class C : public Base {};
-
-// class D : public Base {}; //example to fail
-
-Base	*generate(void);
-void identify(Base *p);
-void identify(Base& p);
+		static uintptr_t serialize(Data* ptr);
+		static Data* deserialize(uintptr_t raw);
+	private:
+		Serializer(){};
+		~Serializer();
+		Serializer(const Serializer& other);
+};
 
 #endif

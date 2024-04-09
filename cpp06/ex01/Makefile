@@ -6,7 +6,7 @@
 #    By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/06 16:35:45 by otuyishi          #+#    #+#              #
-#    Updated: 2024/04/09 11:32:32 by otuyishi         ###   ########.fr        #
+#    Updated: 2024/04/09 11:32:24 by otuyishi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes #-fsanitize=address
 
 RM = rm -rf
 
-NAME = ex00
+NAME = ex01
 
-SRCS = main.cpp srcs/Converter.cpp
+SRCS = main.cpp srcs/Serializer.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

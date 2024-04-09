@@ -6,13 +6,16 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:50:07 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/08 21:48:51 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:25:51 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Base.hpp"
+#include <cstdlib>
+#include <ctime>
 
 Base	*generate(void) {
+	srand(time(NULL));
 	int	random_num;
 
 	random_num = rand() % 3;
@@ -50,20 +53,22 @@ void identify(Base& p) {
 		(void)a;
 		std::cout << "Type Class A casted successfully";
 		return ;
-	} catch (const std::bad_cast& e) {
+	} catch (const std::exception &) {
 	}
-		try {
-			B& b = dynamic_cast<B&>(p);
-			(void)b;
-			std::cout << "Type Class B casted successfully";
-			return ;
-		} catch (const std::bad_cast& e) {
+
+	try {
+		B& b = dynamic_cast<B&>(p);
+		(void)b;
+		std::cout << "Type Class B casted successfully";
+		return ;
+	} catch (const std::exception &) {
 	}
+
 	try {
 		C& c = dynamic_cast<C&>(p);
 		(void)c;
 		std::cout << "Type Class C casted successfully";
-	} catch (const std::bad_cast& e) {
+	} catch (const std::exception &) {
 		std::cout << "Type casting failure";
 	}
 }

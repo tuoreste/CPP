@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 20:16:27 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/06 12:16:10 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:55:39 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class	AForm {
 		AForm(const std::string &name, const int Sign_grade, const int Exec_grade, const std::string &target);
 		AForm(const AForm& other);
 		AForm& operator=(const AForm& other);
-		~AForm();
+		virtual ~AForm();
 
 		// Getters
 		const std::string		get_Name(void) const;
