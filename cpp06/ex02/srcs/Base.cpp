@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:50:07 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/09 11:25:51 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:54:23 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 #include <ctime>
 
 Base	*generate(void) {
-	srand(time(NULL));
-	int	random_num;
-
-	random_num = rand() % 3;
-	switch (random_num)
+	switch (rand() % 3)
 	{
 	case 0:
 		return new A;

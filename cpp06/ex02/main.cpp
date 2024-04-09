@@ -6,14 +6,14 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 16:39:36 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/09 11:22:15 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:55:20 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/Base.hpp"
 
 int main() {
-	
+	srand(time(NULL));
 	// Generate a random object
 	Base* obj = generate();
 	// D*	d = new D; // example fail
@@ -24,8 +24,9 @@ int main() {
 	std::cout << std::endl;
 
 	// Identify the type of the object using reference
+	Base *b = generate();
 	std::cout << "Using reference: ";
-	identify(*obj);
+	identify(*b);
 	std::cout << std::endl;
 
 	// //meant to fail
