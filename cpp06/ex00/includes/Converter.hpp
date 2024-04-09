@@ -6,19 +6,19 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 16:35:41 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/08 11:07:21 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:10:59 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONVERTER_H
 # define CONVERTER_H
 
-# include <iostream>
+# include <iostream> 
 # include <iomanip>
 # include <string>
 # include <exception>
 # include <sstream>
-#include <limits>
+# include <limits>
 
 struct data
 {
@@ -29,11 +29,13 @@ struct data
 };
 
 class ScalarConverter {
+	private:
+		static void			convert(const std::string &str);
+
 	public:
 		ScalarConverter();
 		~ScalarConverter();
 		ScalarConverter(const ScalarConverter& other);
-		static void			convert(const std::string &str);
 		void	cast_chr(char c);
 		void	cast_int(long data_type);
 		void	cast_float(double data_type);

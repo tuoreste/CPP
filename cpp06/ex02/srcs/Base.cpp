@@ -6,15 +6,17 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:50:07 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/09 14:54:23 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:16:53 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Base.hpp"
-#include <cstdlib>
-#include <ctime>
+# include "../includes/A.hpp"
+# include "../includes/B.hpp"
+# include "../includes/C.hpp"
 
 Base	*generate(void) {
+	
 	switch (rand() % 3)
 	{
 	case 0:

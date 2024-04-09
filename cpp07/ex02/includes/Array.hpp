@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 15:48:48 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/09 17:59:58 by otuyishi         ###   ########.fr       */
+/*   Created: 2024/04/09 21:04:39 by otuyishi          #+#    #+#             */
+/*   Updated: 2024/04/09 21:39:51 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE_H
-# define BASE_H
+#ifndef ARRAY_H
+# define ARRAY_H
 
-# include <iostream>
-# include <string>
-# include <cstdlib>
+#include <iostream>
 
-class Base {
+template <class T>
+class Array {
 	public:
-		virtual	~Base(){}
+		Array();
+		Array (unsigned int n) {
+			
+		}
+		~Array(){}
+		Array(const string& other) {}
+	private:
+	size_t _n;
+	T *array;
 };
 
-// class D : public Base {}; //example meant to FAIL on purpose
-
-Base	*generate(void);
-void	identify(Base *p);
-void	identify(Base& p);
+template <typename T>
+Array<T>::Array() : _n(0), array(NULL) {}
 
 #endif

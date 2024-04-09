@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   C.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 15:48:48 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/09 17:59:58 by otuyishi         ###   ########.fr       */
+/*   Created: 2024/04/09 17:46:21 by otuyishi          #+#    #+#             */
+/*   Updated: 2024/04/09 17:59:35 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE_H
-# define BASE_H
+#ifndef C_H
+# define C_H
 
-# include <iostream>
-# include <string>
-# include <cstdlib>
+class Base;
 
-class Base {
-	public:
-		virtual	~Base(){}
-};
-
-// class D : public Base {}; //example meant to FAIL on purpose
-
-Base	*generate(void);
-void	identify(Base *p);
-void	identify(Base& p);
+class C : public Base {};
 
 #endif

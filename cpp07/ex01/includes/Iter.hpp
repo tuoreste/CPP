@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   Iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 15:48:48 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/09 17:59:58 by otuyishi         ###   ########.fr       */
+/*   Created: 2024/04/09 19:23:24 by otuyishi          #+#    #+#             */
+/*   Updated: 2024/04/09 20:59:19 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE_H
-# define BASE_H
+#ifndef ITER_H
+# define ITER_H
 
-# include <iostream>
-# include <string>
-# include <cstdlib>
+#include <iostream>
 
-class Base {
-	public:
-		virtual	~Base(){}
-};
+//first parameter is address of an array.
+//second one is length of an array.
+//third one is a function that will be called on every element of the array.
+template <typename T>
+void	iter(T *addres, size_t len, void (*func)(T&))
+{
+	for(size_t i = 0; i < len; ++i)
+		func(addres[i]);
+}
 
-// class D : public Base {}; //example meant to FAIL on purpose
-
-Base	*generate(void);
-void	identify(Base *p);
-void	identify(Base& p);
+void	tester(void);
 
 #endif

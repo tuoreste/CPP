@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:03:58 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/09 12:48:38 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:03:07 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,13 @@ struct Data {
 };
 
 class Serializer {
-	public:
-
-		static uintptr_t serialize(Data* ptr);
-		static Data* deserialize(uintptr_t raw);
 	private:
 		Serializer(){};
 		~Serializer();
 		Serializer(const Serializer& other);
+	public:
+		static uintptr_t serialize(Data* ptr);
+		static Data* deserialize(uintptr_t raw);
 };
 
 #endif
