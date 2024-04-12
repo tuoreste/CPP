@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/09 13:03:14 by otuyishi          #+#    #+#              #
-#    Updated: 2024/04/11 19:14:49 by otuyishi         ###   ########.fr        #
+#    Created: 2024/04/12 09:23:40 by otuyishi          #+#    #+#              #
+#    Updated: 2024/04/12 14:28:26 by otuyishi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes #-fsanitize=address
 
 RM = rm -rf
 
-NAME = ex02
+NAME = ex01
 
 SRCS = main.cpp
 

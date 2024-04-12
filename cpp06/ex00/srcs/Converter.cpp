@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 16:35:37 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/09 16:14:13 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:57:02 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ ScalarConverter::~ScalarConverter(){}
 
 ScalarConverter::ScalarConverter(const ScalarConverter& other) {
 	(void)other;
+}
+
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other)
+{
+	if (this != &other){}
+	return (*this);
 }
 
 void ScalarConverter::cast_chr(char chr)
@@ -50,10 +56,10 @@ void ScalarConverter::cast_int(long num)
 	asInt = static_cast<int>(num);
 	asFloat = static_cast<float>(num);
 	asDouble = static_cast<double>(num);
-	if (isprint(num))
+	if ((asInt >= 0 && asInt <= 127 && isprint(asInt)))
 		std::cout << "char: " << "'" << asChar << "'" << std::endl;
-	else if (num >= std::numeric_limits<char>::max() || num <= std::numeric_limits<char>::min())
-		std::cout << "char: char overflow" << std::endl;
+	else if (num < 0 || num > 127)
+		std::cout << "char: overflow" << std::endl;
 	else
 		std::cout << "char: Non displayable" << std::endl;
 	std::cout << "int: ";
@@ -70,15 +76,16 @@ void ScalarConverter::cast_float(double num)
 	int asInt;
 	float asFloat;
 
-	if (isprint(num))
-		std::cout << static_cast<char>(num) << std::endl;
+	asInt = static_cast<int>(num);
+	if ((asInt >= 0 && asInt <= 127 && isprint(asInt)))
+		std::cout << static_cast<char>(asInt) << std::endl;
 	else if (num > std::numeric_limits<char>::max() || num < std::numeric_limits<char>::min())
-		std::cout << "char: char overflow" << std::endl;
+		std::cout << "char: overflow" << std::endl;
 	else
 		std::cout << "char: Non displayable" << std::endl;
 	asInt = static_cast<int>(num);
 	std::cout << "int: ";
-	if (asInt > std::numeric_limits<int>::max() || asInt < std::numeric_limits<int>::min())
+	if (num > std::numeric_limits<int>::max() || num < std::numeric_limits<int>::min())
 		std::cout << "overflow" << std::endl;
 	else
 		std::cout << asInt << std::endl;
@@ -94,27 +101,27 @@ void ScalarConverter::cast_double(long double num)
 	float asFloat;
 	double asDouble;
 
-    if (isprint(num))
-        std::cout << static_cast<char>(num) << std::endl;
-    else if (num > std::numeric_limits<char>::max() || num < std::numeric_limits<char>::min())
-        std::cout << "char: char overflow" << std::endl;
-    else
-        std::cout << "char: Non displayable" << std::endl;
-    asInt = static_cast<int>(num);
-    std::cout << "int: ";
-    if (asInt > std::numeric_limits<int>::max() || asInt < std::numeric_limits<int>::min())
-        std::cout << "overflow" << std::endl;
-    else
-        std::cout << asInt << std::endl;
-    asFloat = static_cast<float>(num);
-    std::cout << "float: "
-     			<< std::fixed << asFloat << "f" << std::endl;
-    asDouble = static_cast<double>(num);
-    std::cout << "double: ";
-    if (asDouble > std::numeric_limits<double>::max() || asDouble < std::numeric_limits<double>::min())
-        std::cout << "overflow" << std::endl;
-    else
-        std::cout << std::fixed << asDouble << std::endl;
+	asInt = static_cast<int>(num);
+	asFloat = static_cast<float>(num);
+	asDouble = static_cast<double>(num);
+	if ((asInt >= 0 && asInt <= 127 && isprint(asInt)))
+		std::cout << "char: " << static_cast<char>(num) << std::endl;
+	else if (num > std::numeric_limits<char>::max() || num < std::numeric_limits<char>::min())
+		std::cout << "char: overflow" << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
+	std::cout << "int: ";
+	if (num > std::numeric_limits<int>::max() || num < std::numeric_limits<int>::min())
+		std::cout << "overflow" << std::endl;
+	else
+		std::cout << asInt << std::endl;
+	std::cout << "float: "
+				<< std::fixed << asFloat << "f" << std::endl;
+	std::cout << "double: ";
+	if (asDouble > std::numeric_limits<double>::max() || asDouble < std::numeric_limits<double>::min())
+		std::cout << "overflow" << std::endl;
+	else
+		std::cout << std::fixed << asDouble << std::endl;
 }
 
 std::string filtered(std::string str, data &conv)
@@ -146,7 +153,7 @@ std::string filtered(std::string str, data &conv)
 void	ScalarConverter::convert(const std::string &str)
 {
 	ScalarConverter	convert;
-	data	data;
+	data	data;	
 	std::string result = filtered(str, data);
 	result == "char" ? convert.cast_chr(str[0]) :
 	result == "int" ? convert.cast_int(data.num) :

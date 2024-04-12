@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.cpp                                     :+:      :+:    :+:   */
+/*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 14:05:19 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/11 17:25:26 by otuyishi         ###   ########.fr       */
+/*   Created: 2024/04/12 09:24:43 by otuyishi          #+#    #+#             */
+/*   Updated: 2024/04/12 14:27:52 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Serializer.hpp"
+#ifndef EASYFIND_HPP
+# define EASYFIND_HPP
 
-Serializer::Serializer(const Serializer& other){
-	(void)other;
-};
+#include <iostream>
+#include <exception>
+#include <cstdlib>
+#include <algorithm>
+#include <vector>
+#include <list>
 
-Serializer& Serializer::operator=(const Serializer& other){
-	if (this != &other){}
-	return (*this);
-}
+template <typename T>
+typename T::iterator easyfind(const T& param1, int param2);
 
-uintptr_t Serializer::serialize(Data* ptr){
-	return (reinterpret_cast<uintptr_t>(ptr));
-}
+#include "easyfind.tpp"
 
-Data* Serializer::deserialize(uintptr_t raw){
-	return (reinterpret_cast<Data*>(raw));
-}
+#endif

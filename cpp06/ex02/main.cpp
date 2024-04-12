@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 16:39:36 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/09 18:18:11 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:38:50 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int main() {
 	// delete d;
 
 	delete obj;
+	delete b;
 
 	return 0;
 }
