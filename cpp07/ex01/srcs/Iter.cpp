@@ -6,43 +6,85 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:35:26 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/09 20:58:32 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/13 09:40:24 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Iter.hpp"
 
-//TESTING SAMPLES HERE,
-// just printing
-template <typename T>
-void printElement(T& element)
-{
-	std::cout << element << " ";
+class Point {
+	private:
+		int x;
+		int y;
+	public:
+		Point(int x, int y) : x(x), y(y) {}
+		void print() const {
+			std::cout << "(" << x << ", " << y << ")" << std::endl;
+		}
+};
+
+// Method to double integers
+void doubleInt(int x) {
+	x *= 2;
+	std::cout << "Doubled int: " << x << std::endl;
 }
 
-template <typename T>
-void squareElement(T& element)
-{
-	element *= element;
+// Method to print strings in reverse
+void reverseString(const std::string& str) {
+	std::string reversed(str.rbegin(), str.rend());
+	std::cout << "Reversed string: " << reversed << std::endl;
 }
 
-void	tester(void)
-{
-	//an array of integers
-	int intArray[] = {1, 2, 3, 4, 5};
-	size_t length = sizeof(intArray) / sizeof(int);
+// Method to print Point objects
+void printPoint(const Point& p) {
+	std::cout << "Point: ";
+	p.print();
+}
 
-	// Test A: Print elements of the array
-	std::cout << "Printing elements of the array:" << std::endl;
-	iter(intArray, length, printElement<int>);
-	std::cout << std::endl;
+//print empty
+void printInt(int x) {
+    std::cout << x << " ";
+}
 
-	// Test B: Square elements of the array
-	std::cout << "Squaring elements of the array:" << std::endl;
-	iter(intArray, length, squareElement<int>);
+void tester() {
+	// Testing with integers
+	int arrInt[] = {1, 2, 3, 4, 5};
+	std::cout << "Testing with (integers):" << std::endl;
+	iter(arrInt, 5, doubleInt);
 
-	// Print the modified array
-	std::cout << "Modified array:";
-	iter(intArray, length, printElement<int>);
-	std::cout << std::endl;
+	// Testing with strings
+	std::string arrStr[] = {"hello", "world", "open", "ai"};
+	std::cout << "\nTesting with (strings):" << std::endl;
+	iter(arrStr, 4, reverseString);
+
+	// Testing with const type (const int)
+	const int arrConst[] = {1, 2, 3, 4, 5};
+	std::cout << "\nTesting with const type (const int):" << std::endl;
+	try {
+		iter(arrConst, 5, doubleInt);
+	} catch (const std::exception& e) {
+		std::cerr << "Failed: " << e.what() << std::endl;
+	}
+
+	// Testing with complex type (Point)
+	std::vector<Point> points;
+    points.push_back(Point(1, 2));
+    points.push_back(Point(3, 4));
+    points.push_back(Point(5, 6));
+	std::cout << "\nTesting with complex type (Point):" << std::endl;
+	iter(&points[0], points.size(), printPoint);
+    std::cout << std::endl;
+
+	// Test with an empty array
+    int emptyArray[0];
+    std::cout << "Testing with (empty) array:" << std::endl;
+    iter(emptyArray, 0, printInt);
+    std::cout << std::endl;
+
+    // Test with an empty container (e.g., vector)
+    std::vector<int> emptyVector;
+    std::cout << "Testing with (empty) vector:" << std::endl;
+    iter(emptyVector.data(), emptyVector.size(), printInt);
+    std::cout << std::endl;
+
 }

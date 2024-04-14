@@ -6,11 +6,11 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 09:19:01 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/12 09:19:02 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/13 09:56:57 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Array.hpp"
+#include "Array.hpp"
 
 template <typename T>
 Array<T>::Array() : _n(0), array(NULL) {}
@@ -28,7 +28,7 @@ Array<T>::Array(const Array &other) :
 	_n(other._n), 
 	array(new T[_n]) {
 	for (size_t i = 0; i < _n; i++)
-		array[i] = other[i];
+		array[i] = other.array[i];
 }
 
 template <typename T>
@@ -45,7 +45,7 @@ Array<T>& Array<T>::operator=(const Array &other) {
 		if (_n > 0)
 			array = new T[_n];
 		for (size_t i = 0; i < _n; i++) {
-			this->array[i] = other[i];
+			this->array[i] = other.array[i];
 		}
 	}
 	return *this;
