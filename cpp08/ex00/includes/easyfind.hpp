@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 09:24:43 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/12 14:27:52 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/15 12:39:06 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@
 #include <exception>
 #include <cstdlib>
 #include <algorithm>
-#include <vector>
-#include <list>
+
 
 template <typename T>
-typename T::iterator easyfind(const T& param1, int param2);
+typename T::iterator easyFind(const T& param1, int param2);
 
 #include "easyfind.tpp"
 

@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 20:09:41 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/14 20:00:46 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/15 12:48:34 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,17 @@ class Span {
 		Span(const Span &other);
 		~Span();
 		Span& operator<<(const Span &other);
-		void			addNumber(unsigned int addMe);
+
+		void			addNumber(unsigned int addMe);		
 		unsigned int	shortestSpan();
-		unsigned int	longestSpan();
+		unsigned int	longestSpan() const;;
+		void			print() const;
+
+		template <typename Container>
+		void	range_of_iterators(Container &container) {
+			_Cont.insert(_Cont.end(), container.begin(), container.end());
+		}
+
 		class excepioN: public std::runtime_error {
 			public:
 				excepioN(const std::string& str_sms);

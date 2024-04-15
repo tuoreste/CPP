@@ -6,20 +6,18 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 20:10:52 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/14 20:23:36 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/15 19:05:21 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Span.hpp"
 
-Span::Span(): _N(0){}
+Span::Span(): _N(0), _Cont(0){}
 
-Span::Span(const unsigned int &n): _N(n){}
+Span::Span(const unsigned int &n): _N(n), _Cont(0){}
 
 Span::Span(const Span &other): _N(other._N), _Cont(other._Cont) {
 	_Cont.reserve(_N);
-	for (unsigned int i = 0; i < _N; ++i)
-		_Cont[i] = other._Cont[_N];
 }
 
 Span::~Span(){}
@@ -48,23 +46,32 @@ unsigned int	Span::shortestSpan(void)
 {
 	if (_Cont.size() <= 1)
 		throw Span::excepioN("no span can be found!");
+	unsigned int	distance = 0;
 	unsigned int _short = std::numeric_limits<int>::max();
-	for (unsigned int i = 1; i <= _Cont.size(); ++i)
+	for (unsigned int i = 1; i < _Cont.size(); ++i)
 	{
-		unsigned int	distance = std::abs(_Cont[i] - _Cont[i - 1]);
+		distance = std::abs(_Cont[i] - _Cont[i - 1]);
 		_short = std::min(distance, _short);
 	}
 	return _short;
 }
 
 //the longest span(distance) btn all the numbers stored
-unsigned int	Span::longestSpan(void)
+unsigned int	Span::longestSpan(void) const
 {
 	if (_Cont.size() <= 1)
 		throw Span::excepioN("no span can be found!");
-	std::vector<int>::iterator maxA = std::max_element(_Cont.begin(), _Cont.end());
-	std::vector<int>::iterator maxB = std::min_element(_Cont.begin(), _Cont.end());
+	std::vector<int>::const_iterator maxA = std::max_element(_Cont.begin(), _Cont.end());
+	std::vector<int>::const_iterator maxB = std::min_element(_Cont.begin(), _Cont.end());
 	unsigned int x = *maxA;
 	unsigned int y = *maxB;
 	return (x - y);
+}
+
+void	Span::print() const {
+	std::cout << "{ ";
+	for (std::vector<int>::const_iterator it = _Cont.begin(); it != _Cont.end(); it++) {
+		std::cout << *it << ", ";
+	}
+	std::cout << "}\n";
 }

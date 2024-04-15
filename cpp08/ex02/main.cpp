@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 20:12:50 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/14 22:30:33 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/15 15:51:52 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main()
 	MutantStack<int>::iterator ite = mstack.end();
 	++it;
 	--it;
-	std::cout << "\nprinitng stack....\n";
+	std::cout << "\nprinting stack....\n";
 	while (it != ite)
 	{
 		std::cout << *it << std::endl;
@@ -38,7 +38,7 @@ int main()
 
 	MutantStack<int>::reverse_iterator rit = s.rbegin();
 	MutantStack<int>::reverse_iterator rite = s.rend();
-	std::cout << "\n\nprinitng copy stack but using reverse iterator...\n";
+	std::cout << "\n\nprinting copy stack but using reverse iterator...\n";
 	while (rit != rite)
 	{
 		std::cout << *rit << std::endl;

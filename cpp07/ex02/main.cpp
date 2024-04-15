@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 21:01:37 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/13 12:09:34 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:45:22 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,12 @@ int main() {
     assignedArray = intArray;
     std::cout << "Assigned array size: " << assignedArray.size() << std::endl;
 
+	try {
+		std::cout << "//Trying to access an element out of range..." << std::endl;
+		std::cout << "arr[10] = " << intArray[10] << std::endl;
+	}
+	catch (const std::out_of_range& e) {
+		std::cerr << "Caught exception: " << e.what() << std::endl;
+	}
     return 0;
 }

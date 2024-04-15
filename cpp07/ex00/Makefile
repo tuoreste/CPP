@@ -6,7 +6,7 @@
 #    By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 13:03:14 by otuyishi          #+#    #+#              #
-#    Updated: 2024/04/09 13:08:35 by otuyishi         ###   ########.fr        #
+#    Updated: 2024/04/15 10:58:24 by otuyishi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,4 +42,3 @@ run: all clean
 		./$(NAME)
 
 .PHONY: all clean fclean re run
-

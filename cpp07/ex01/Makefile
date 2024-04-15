@@ -6,7 +6,7 @@
 #    By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 13:03:14 by otuyishi          #+#    #+#              #
-#    Updated: 2024/04/09 20:39:53 by otuyishi         ###   ########.fr        #
+#    Updated: 2024/04/15 11:56:26 by otuyishi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM = rm -rf
 
 NAME = ex01
 
-SRCS = main.cpp srcs/Iter.cpp
+SRCS = main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

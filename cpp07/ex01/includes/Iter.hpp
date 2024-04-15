@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:23:24 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/13 09:22:40 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:58:11 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,17 @@ void	iter(T *addres, size_t len, Func metho)
 }
 
 void	tester(void);
+
+//testing purposes
+class Point {
+	private:
+		int x;
+		int y;
+	public:
+		Point(int x, int y) : x(x), y(y) {}
+		void print() const {
+			std::cout << "(" << x << ", " << y << ")" << std::endl;
+		}
+};
 
 #endif
