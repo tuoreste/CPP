@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 20:10:52 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/15 19:05:21 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:07:15 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,13 @@ unsigned int	Span::shortestSpan(void)
 		throw Span::excepioN("no span can be found!");
 	unsigned int	distance = 0;
 	unsigned int _short = std::numeric_limits<int>::max();
-	for (unsigned int i = 1; i < _Cont.size(); ++i)
+	for (unsigned int i = 0; i < _Cont.size(); i++)
 	{
-		distance = std::abs(_Cont[i] - _Cont[i - 1]);
-		_short = std::min(distance, _short);
+		for (unsigned int j = i + 1; j < _Cont.size(); j++)
+		{
+			distance = std::abs(_Cont[i] - _Cont[j]);
+			_short = std::min(distance, _short);
+		}
 	}
 	return _short;
 }

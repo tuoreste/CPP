@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 20:12:50 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/15 19:07:42 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:07:58 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main()
 		sp.addNumber(6);
 		sp.addNumber(3);
 		sp.addNumber(17);
-		sp.addNumber(9);
+		sp.addNumber(6);
 		sp.addNumber(11);
 		// sp.addNumber(11);
 		std::cout << sp.shortestSpan() << std::endl;
