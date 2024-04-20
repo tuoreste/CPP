@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 17:01:04 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/18 10:47:21 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:16:20 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,5 @@ int	main(int argc, char **argv)
 	{
 		// std::cout << e << '\n';
 	}
-	
-		
 	return (0);
 }
