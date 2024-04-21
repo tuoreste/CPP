@@ -6,7 +6,7 @@
 #    By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/12 09:23:40 by otuyishi          #+#    #+#              #
-#    Updated: 2024/04/20 16:17:36 by otuyishi         ###   ########.fr        #
+#    Updated: 2024/04/20 17:02:22 by otuyishi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes -fsanitize=address
 
 RM = rm -rf
 
-NAME = btc
+NAME = RPN
 
-SRCS = main.cpp 
+SRCS = main.cpp srcs/RPN.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
