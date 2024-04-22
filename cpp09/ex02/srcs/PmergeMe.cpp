@@ -16,6 +16,25 @@ PmergeMe::PmergeMe(){}
 
 PmergeMe::~PmergeMe() {}
 
-void	duoMaker(std::vector<int> vector) {
-	
+template <typename T>
+typename T::iterator	PmergeMe::duoMaker(T &container) {
+	typedef typename T::value_type  ContentType;
+    typedef std::pair<ContentType, ContentType> DuoType;
+    T   res;
+    typename T::iterator it = container.begin();
+    while (it != container.end())
+    {
+        typename T::iterator next = it;
+        ++next;
+        if (next == container.end()) {
+            res.push_back(*it);
+            break ;
+        }
+        DuoType duo = std::make_pair(*it, *next);
+        res.push_back(duo);
+        it = next;
+        ++next;
+    }
+    container = res;
+    return (container.end());
 }

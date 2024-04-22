@@ -38,37 +38,12 @@ class PmergeMe {
 			public:
 				PmergeMe_Exception(const std::string &msg): std::runtime_error(msg) {}
 		};
+
+		template <typename T>
+		typename T::iterator	duoMaker(T &container);
+
 		std::vector<int> vector_c;
 		std::list<int> list_c;
 };
-
-// template <typename T>
-// typename T::iterator duoMaker(T& param1) {
-// 	typedef typename T::value_type ValueType;
-// 	typedef std::pair<ValueType, ValueType> PairType;
-
-// 	T result;
-
-// 	typename T::iterator it = param1.begin();
-// 	while (it != param1.end()) {
-// 		typename T::iterator next = it;
-// 		++next;
-
-// 		if (next == param1.end()) {
-// 			result.push_back(*it);
-// 			break;
-// 		}
-
-// 		PairType pair = std::make_pair(*it, *next);
-// 		result.push_back(pair);
-
-// 		it = next;
-// 		++next;
-// 	}
-
-// 	param1 = result;
-
-// 	return param1.end();
-// }
 
 #endif

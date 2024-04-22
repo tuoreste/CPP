@@ -12,12 +12,6 @@
 
 #include "includes/PmergeMe.hpp"
 
-
-
-PmergeMe::PmergeMe(){}
-
-PmergeMe::~PmergeMe() {}
-
 int main(int argc, char *argv[])
 {
 	if (argc < 2)
