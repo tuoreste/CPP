@@ -41,7 +41,14 @@ class PmergeMe {
 			public:
 				PmergeMe_Exception(const std::string &msg): std::runtime_error(msg) {}
 		};
+<<<<<<< HEAD
 		typedef std::vector<int>::iterator it;
+=======
+
+		template <typename T>
+		typename T::iterator	duoMaker(T &container);
+
+>>>>>>> e15499d664138598d28bee02cf3949420f3fd059
 		std::vector<int> vector_c;
 		std::list<int> list_c;
 };
