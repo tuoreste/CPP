@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:29 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/22 16:54:39 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/23 10:34:48 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,48 +27,23 @@
 # include <cstdlib>
 # include <algorithm>
 
+template <typename T>
 class PmergeMe {
 	public:
-		typedef std::vector<int>::iterator it;
+		typedef typename T::iterator iterator;
+		typedef typename T::value_type value_type;
+	
 		PmergeMe();
 		~PmergeMe();
-		void	duoMaker(std::vector<int> vector);
+		typename T::iterator	duoMaker(T &container);
 
 		class PmergeMe_Exception : public std::runtime_error {
 			public:
 				PmergeMe_Exception(const std::string &msg): std::runtime_error(msg) {}
 		};
+		typedef std::vector<int>::iterator it;
 		std::vector<int> vector_c;
 		std::list<int> list_c;
 };
-
-// template <typename T>
-// typename T::iterator duoMaker(T& param1) {
-// 	typedef typename T::value_type ValueType;
-// 	typedef std::pair<ValueType, ValueType> PairType;
-
-// 	T result;
-
-// 	typename T::iterator it = param1.begin();
-// 	while (it != param1.end()) {
-// 		typename T::iterator next = it;
-// 		++next;
-
-// 		if (next == param1.end()) {
-// 			result.push_back(*it);
-// 			break;
-// 		}
-
-// 		PairType pair = std::make_pair(*it, *next);
-// 		result.push_back(pair);
-
-// 		it = next;
-// 		++next;
-// 	}
-
-// 	param1 = result;
-
-// 	return param1.end();
-// }
 
 #endif
