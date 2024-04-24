@@ -6,7 +6,7 @@
 #    By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/21 13:44:00 by otuyishi          #+#    #+#              #
-#    Updated: 2024/04/22 10:49:32 by otuyishi         ###   ########.fr        #
+#    Updated: 2024/04/23 15:20:53 by otuyishi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM = rm -rf
 
 NAME = PmergeMe
 
-SRCS = main.cpp #srcs/PmergeMe.cpp
+SRCS = main.cpp srcs/PmergeMe.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

@@ -6,11 +6,12 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:37 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/23 10:31:22 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:30:01 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/PmergeMe.hpp"
+#include "includes/PmergeMe.tpp"
 
 int main(int argc, char *argv[])
 {
@@ -21,23 +22,34 @@ int main(int argc, char *argv[])
 	}
 	try
 	{
-		PmergeMe<std::vector<int> > obj;
+		PmergeMe obj;
 		for (int i = 1; i < argc; ++i) {
 			std::istringstream ss(argv[i]);
 			std::string token;
 			int num;
 			ss >> num;
 			if (ss.eof() != true || num < 0)
-				throw PmergeMe<std::string>::PmergeMe_Exception("Invalid Input, byeee!");
+				throw PmergeMe::PmergeMe_Exception("Invalid Input, byeee!");
 			obj.vector_c.push_back(num);
 		}
 		obj.duoMaker(obj.vector_c);
-		std::cout << "Resulting vector: ";
-		for (std::vector<int>::iterator it = obj.vector_c.begin(); it != obj.vector_c.end(); ++it) {
-			if (it != obj.vector_c.begin()) std::cout << ", ";
-			std::cout << *it;
+		obj.sorter(obj.vector_pairs);
+		for (std::vector< std::vector<int> >::iterator it = obj.vector_pairs.begin(); it != obj.vector_pairs.end(); it++) {
+			if (it->size() == 1) {
+				std::cout << (*it)[0] << std::endl;
+				break ;
 		}
-	std::cout << std::endl;
+		for (size_t i = 0; i < it->size(); i++)
+			std::cout << (*it)[i] << " ";
+		std::cout << std::endl;
+	}
+		// std::cout << "Resulting vector: ";
+		// for (std::vector<int>::iterator it = obj.vector_c.begin(); it != obj.vector_c.end(); ++it) {
+		// 	if (it != obj.vector_c.begin())
+		// 		std::cout << ", ";
+		// 	std::cout << *it;
+		// }
+		// std::cout << std::endl;
 	}
 	catch(const std::runtime_error & e)
 	{

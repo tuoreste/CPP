@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:29 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/23 10:34:48 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:29:29 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,28 @@
 # include <cstdlib>
 # include <algorithm>
 
-template <typename T>
 class PmergeMe {
 	public:
-		typedef typename T::iterator iterator;
-		typedef typename T::value_type value_type;
-	
 		PmergeMe();
 		~PmergeMe();
-		typename T::iterator	duoMaker(T &container);
-
+		
 		class PmergeMe_Exception : public std::runtime_error {
 			public:
 				PmergeMe_Exception(const std::string &msg): std::runtime_error(msg) {}
 		};
-<<<<<<< HEAD
-		typedef std::vector<int>::iterator it;
-=======
-
-		template <typename T>
-		typename T::iterator	duoMaker(T &container);
-
->>>>>>> e15499d664138598d28bee02cf3949420f3fd059
+		//vector container
 		std::vector<int> vector_c;
+		std::vector< std::vector<int> > vector_pairs;
+
+		//list container
 		std::list<int> list_c;
+		std::list< std::vector<int> > list_pairs;
+
+		void	duoMaker(const std::vector<int> vect);
+		static 	bool	compar(const std::vector<int> &f, const std::vector<int> &s);
+		void	sorter(std::vector< std::vector<int> > vector_double);
 };
+
+// # include "PmergeMe.tpp"
 
 #endif
