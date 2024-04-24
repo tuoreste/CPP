@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:29 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/24 20:58:38 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/24 21:29:47 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ class PmergeMe {
 		static 	bool	compar(const std::vector<int> &f, const std::vector<int> &s);
 		void	sorter(std::vector< std::vector<int> > &vector_double);
 		void	separator(std::vector< std::vector<int> > sorted_duos);
+		int		Jacobsthal(int n);
 };
 
 // # include "PmergeMe.tpp"

@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:33 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/24 20:58:24 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/24 21:49:13 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	PmergeMe::separator(std::vector< std::vector<int> > sorted_duos) {
 	}
 }
 
-
-
 void	PmergeMe::duoMaker(std::vector<int> vect) {
 	for (std::vector<int>::iterator iter = vect.begin(); iter != vect.end(); iter += 2) {
 		std::vector<int> duos;
@@ -47,4 +45,18 @@ void	PmergeMe::duoMaker(std::vector<int> vect) {
 		duos.push_back(std::min(*iter, *(iter + 1)));
 		vector_pairs.push_back(duos);
 	}
+}
+
+int	PmergeMe::Jacobsthal(int n)
+{
+	if (n == 0)
+		return 0;
+	if (n == 1)
+		return 1;
+	return Jacobsthal(n - 1) + 2 * Jacobsthal(n - 2);
+}
+
+void	mergeSmallBig(std::vector<int> vector_b, std::vector<int> vector_s) {
+	int	small_len = vector_s.size();
+	
 }
