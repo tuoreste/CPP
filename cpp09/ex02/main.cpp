@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:37 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/24 21:06:15 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:15:10 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,31 @@ int main(int argc, char *argv[])
 		}
 		obj.duoMaker(obj.vector_c);
 		obj.sorter(obj.vector_pairs);
-		for (std::vector< std::vector<int> >::iterator it = obj.vector_pairs.begin(); it != obj.vector_pairs.end(); it++) {
-			if (it->size() == 1) {
-					std::cout << (*it)[0] << std::endl;
-					break ;
-			}
-			for (size_t i = 0; i < it->size(); i++)
-				std::cout << (*it)[i] << " ";
-			std::cout << std::endl;
-		}
+		obj.separator(obj.vector_pairs);
+		obj.indexes = obj.jacobsthal(obj.vector_smaller.size());
+		obj.binaryInsertSortSmallBig(obj.vector_smaller, obj.vector_bigger, obj.indexes);
+		// for (std::vector< std::vector<int> >::iterator it = obj.vector_pairs.begin(); it != obj.vector_pairs.end(); it++) {
+		// 	if (it->size() == 1) {
+		// 			std::cout << (*it)[0] << std::endl;
+		// 			break ;
+		// 	}
+		// 	for (size_t i = 0; i < it->size(); i++)
+		// 		std::cout << (*it)[i] << " ";
+		// 	std::cout << std::endl;
+		// }
 
 		std::cout << "=========================================" << std::endl;
 		
-		obj.separator(obj.vector_pairs);
-		std::cout << "Bigger: ";
-		for (std::vector<int> ::iterator it = obj.vector_bigger.begin(); it != obj.vector_bigger.end(); it++)
+		std::cout << "Original: ";
+		for (std::vector<int> ::iterator it = obj.vector_c.begin(); it != obj.vector_c.end(); it++)
 		{
 			std::cout << *it << " ";
 		}
 	
 		std::cout << std::endl;
 	
-		std::cout << "Smaller: ";
-		for (std::vector<int> ::iterator it = obj.vector_smaller.begin(); it != obj.vector_smaller.end(); it++)
+		std::cout << "Result: ";
+		for (std::vector<int> ::iterator it = obj.vector_bigger.begin(); it != obj.vector_bigger.end(); it++)
 		{
 			std::cout << *it << " ";
 		}

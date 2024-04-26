@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:29 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/24 21:29:47 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:11:01 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ class PmergeMe {
 		std::vector< std::vector<int> > vector_pairs;
 		std::vector<int> vector_bigger;
 		std::vector<int> vector_smaller;
+		std::vector<int> indexes;
 
 		//list container
 		std::list<int> list_c;
@@ -50,7 +51,8 @@ class PmergeMe {
 		static 	bool	compar(const std::vector<int> &f, const std::vector<int> &s);
 		void	sorter(std::vector< std::vector<int> > &vector_double);
 		void	separator(std::vector< std::vector<int> > sorted_duos);
-		int		Jacobsthal(int n);
+		std::vector<int>		jacobsthal(int n);
+		void	binaryInsertSortSmallBig(std::vector<int> &vector_b, std::vector<int> &vector_s, std::vector<int> &indexes);
 };
 
 // # include "PmergeMe.tpp"

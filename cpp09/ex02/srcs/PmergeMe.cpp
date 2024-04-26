@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:33 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/24 21:49:13 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:37:56 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,45 @@ void	PmergeMe::duoMaker(std::vector<int> vect) {
 	}
 }
 
-int	PmergeMe::Jacobsthal(int n)
+std::vector<int>	PmergeMe::jacobsthal(int n)
 {
-	if (n == 0)
-		return 0;
-	if (n == 1)
-		return 1;
-	return Jacobsthal(n - 1) + 2 * Jacobsthal(n - 2);
+	std::vector<int>	indexes;
+
+	if (n > 0)
+		indexes.push_back(0);
+	if (n > 1)
+		indexes.push_back(1);
+	int	i = 2;
+	while (1)
+	{
+		int index = indexes[i - 1] + 2 * indexes[i - 2];
+		indexes.push_back(index);
+		if (n < indexes[i])
+			break ;
+		i++;
+	}
+	return (indexes);
 }
 
-void	mergeSmallBig(std::vector<int> vector_b, std::vector<int> vector_s) {
-	int	small_len = vector_s.size();
-	
+void	PmergeMe::binaryInsertSortSmallBig(std::vector<int> &vector_b, std::vector<int> &vector_s, std::vector<int> &indexes) {
+	typedef std::vector<int>::iterator	binary;
+	vector_b.insert(vector_b.begin(), vector_s[0]);
+	if (vector_s.size() > 1 && indexes.size() > 1)
+	{
+		binary i = std::lower_bound(vector_b.begin(), vector_b.end(), vector_s[1]);
+		vector_b.insert(i, vector_s[1]);
+	}
+	for (size_t j = 2; j < indexes.size(); j++) {
+		size_t	k = indexes[j - 1];
+		size_t	z = indexes[j];
+		if (z > vector_s.size() - 1)
+			z = vector_s.size() - 1;
+		while (z > k)
+		{
+			binary it = std::lower_bound(vector_b.begin(), vector_b.end(), vector_s[z]);
+			// std::cout << *it << std::endl;
+			vector_b.insert(it, vector_s[z]);
+			z--;
+		}
+	}
 }
