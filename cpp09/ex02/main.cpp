@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:37 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/26 13:21:24 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:52:37 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,7 @@ int main(int argc, char *argv[])
 				throw PmergeMe::PmergeMe_Exception("Error");
 			obj.vector_c.push_back(num);
 		}
-		obj.duoMaker(obj.vector_c);
-		obj.sorter(obj.vector_pairs);
-		obj.separator(obj.vector_pairs);
-		obj.indexes = obj.jacobsthal(obj.vector_smaller.size());
-		obj.binaryInsertSortSmallBig(obj.vector_bigger, obj.vector_smaller, obj.indexes);
+		obj.ford_Johnson_vector(obj.vector_c);
 		// for (std::vector< std::vector<int> >::iterator it = obj.vector_pairs.begin(); it != obj.vector_pairs.end(); it++) {
 		// 	if (it->size() == 1) {
 		// 			std::cout << (*it)[0] << std::endl;
@@ -46,29 +42,6 @@ int main(int argc, char *argv[])
 		// 		std::cout << (*it)[i] << " ";
 		// 	std::cout << std::endl;
 		// }
-
-		std::cout << "=========================================" << std::endl;
-		
-		std::cout << "Before: ";
-		for (std::vector<int> ::iterator it = obj.vector_c.begin(); it != obj.vector_c.end(); it++)
-		{
-			std::cout << *it << " ";
-		}
-	
-		std::cout << std::endl;
-	
-		std::cout << "After: ";
-		for (std::vector<int> ::iterator it = obj.vector_bigger.begin(); it != obj.vector_bigger.end(); it++)
-		{
-			std::cout << *it << " ";
-		}
-
-
-
-	
-
-
-
 
 		// std::cout << "Resulting vector: ";
 		// for (std::vector<int>::iterator it = obj.vector_c.begin(); it != obj.vector_c.end(); ++it) {

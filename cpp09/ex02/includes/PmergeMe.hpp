@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:29 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/26 13:28:16 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:56:09 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,8 @@
 # include <sstream>
 # include <vector>
 # include <exception>
-# include <list>
-# include <string>
-# include <cstring>
-# include <sys/stat.h>
-# include <iomanip>
 # include <ctime>
-# include <cstdlib>
 # include <algorithm>
-
 
 class PmergeMe {
 	public:
@@ -42,15 +35,40 @@ class PmergeMe {
 		std::vector< std::vector<int> > vector_pairs;
 		std::vector<int> vector_bigger;
 		std::vector<int> vector_smaller;
-		std::vector<int> indexes;
 
+		//vector container
+		std::deque<int> deque_c;
+		std::deque< std::deque<int> > deque_pairs;
+		std::deque<int> deque_bigger;
+		std::deque<int> deque_smaller;
 
-		void				duoMaker(const std::vector<int> vect);
+		//Ford-Johnson algo for vector
+		void		ford_Johnson_vector(std::vector<int> &container);
+
+		//Ford-Johnson algo for deque
+		void		ford_Johnson_deque(std::vector<int> &container);
+
+		//make duos
+		template	<typename Container>
+		void		duoMaker(const Container &vect);
+
+		//compare duos true or false
 		static 	bool		compar(const std::vector<int> &f, const std::vector<int> &s);
-		void				sorter(std::vector< std::vector<int> > &vector_double);
-		void				separator(std::vector< std::vector<int> > sorted_duos);
+
+		//sort duos
+		template	<typename Container>
+		void		sorter(Container &container_double);
+
+		//duos separating
+		template	<typename Container>
+		void		separator(Container &sorted_duos);
+
+		//return me the indexes in accordance to the smaller container
 		std::vector<int>	jacobsthal(int n);
-		void				binaryInsertSortSmallBig(std::vector<int> &vector_b, std::vector<int> &vector_s, std::vector<int> &indexes);
+
+		//binary sorting, final sort stagetemplate	<typename Container>
+		template	<typename Container>
+		void		binaryInsertSortSmallBig(Container &container_b, Container &container_s, std::vector<int> &indexes);
 };
 
 #endif

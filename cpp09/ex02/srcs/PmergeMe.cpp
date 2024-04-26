@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:33 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/26 12:37:56 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:54:24 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,26 @@ bool	PmergeMe::compar(const std::vector<int> &f, const std::vector<int> &s) {
 	return (f[0] < s[0]);
 }
 
-void	PmergeMe::sorter(std::vector< std::vector<int> > &vector_double) {
-	std::sort(vector_double.begin(), vector_double.end(), compar);
+template	<typename Container>
+void	PmergeMe::sorter(Container &container_double) {
+	std::sort(container_double.begin(), container_double.end(), compar);
 }
 
-void	PmergeMe::separator(std::vector< std::vector<int> > sorted_duos) {
-	for (std::vector< std::vector<int> >::iterator it = sorted_duos.begin(); it != sorted_duos.end(); it++)
+template	<typename Container>
+void	PmergeMe::separator(Container &sorted_duos) {
+	for (typename Container::iterator iter = sorted_duos.begin(); iter != sorted_duos.end(); iter++)
 	{
-		vector_bigger.push_back((*it)[0]);
-		vector_smaller.push_back((*it)[1]);
+		vector_bigger.push_back((*iter)[0]);
+		vector_smaller.push_back((*iter)[1]);
 	}
 }
 
-void	PmergeMe::duoMaker(std::vector<int> vect) {
-	for (std::vector<int>::iterator iter = vect.begin(); iter != vect.end(); iter += 2) {
-		std::vector<int> duos;
+template	<typename Container>
+void		PmergeMe::duoMaker(const Container &vect) {
+	for (typename Container::const_iterator iter = vect.begin(); iter != vect.end(); iter += 2) {
+		Container duos;
 		if ((iter + 1) == vect.end())
-		{
-			duos.push_back(*iter);
-			vector_pairs.push_back(duos);
 			break ;
-		}
 		duos.push_back(std::max(*iter, *(iter + 1)));
 		duos.push_back(std::min(*iter, *(iter + 1)));
 		vector_pairs.push_back(duos);
@@ -67,25 +66,68 @@ std::vector<int>	PmergeMe::jacobsthal(int n)
 	return (indexes);
 }
 
-void	PmergeMe::binaryInsertSortSmallBig(std::vector<int> &vector_b, std::vector<int> &vector_s, std::vector<int> &indexes) {
-	typedef std::vector<int>::iterator	binary;
-	vector_b.insert(vector_b.begin(), vector_s[0]);
-	if (vector_s.size() > 1 && indexes.size() > 1)
+template	<typename Container>
+void	PmergeMe::binaryInsertSortSmallBig(Container &container_b, Container &container_s, std::vector<int> &indexes) {
+	container_b.insert(container_b.begin(), container_s[0]);
+	if (container_s.size() > 1 && indexes.size() > 1)
 	{
-		binary i = std::lower_bound(vector_b.begin(), vector_b.end(), vector_s[1]);
-		vector_b.insert(i, vector_s[1]);
+		typename Container::iterator i = std::lower_bound(container_b.begin(), container_b.end(), container_s[1]);
+		container_b.insert(i, container_s[1]);
 	}
 	for (size_t j = 2; j < indexes.size(); j++) {
 		size_t	k = indexes[j - 1];
 		size_t	z = indexes[j];
-		if (z > vector_s.size() - 1)
-			z = vector_s.size() - 1;
+		if (z > container_s.size() - 1)
+			z = container_s.size() - 1;
 		while (z > k)
 		{
-			binary it = std::lower_bound(vector_b.begin(), vector_b.end(), vector_s[z]);
-			// std::cout << *it << std::endl;
-			vector_b.insert(it, vector_s[z]);
+			typename Container::iterator it = std::lower_bound(container_b.begin(), container_b.end(), container_s[z]);
+			container_b.insert(it, container_s[z]);
 			z--;
 		}
 	}
+}
+
+//calls with vector container
+void	 PmergeMe::ford_Johnson_vector(std::vector<int> &container) {
+	std::vector<int> indexes;
+	duoMaker<std::vector<int> >(container);
+	sorter<std::vector<std::vector<int> > >(vector_pairs);
+	separator<std::vector<std::vector<int> > >(vector_pairs);
+	if (container.size() % 2 != 0)
+		vector_smaller.push_back(container[container.size() - 1]);
+	indexes = jacobsthal(vector_smaller.size());
+	binaryInsertSortSmallBig(vector_bigger, vector_smaller, indexes);
+
+	std::cout << "Before: ";
+	for (std::vector<int> ::iterator it = vector_c.begin(); it != vector_c.end(); it++)
+		std::cout << *it << " ";
+
+	std::cout << std::endl;
+
+	std::cout << "After: ";
+	for (std::vector<int> ::iterator it = vector_bigger.begin(); it != vector_bigger.end(); it++)
+		std::cout << *it << " ";
+}
+
+void	 PmergeMe::ford_Johnson_deque(std::vector<int> &container) {
+	//calls with deque container
+	std::deque<int> indexes;
+	duoMaker<std::deque<int> >(container);
+	sorter<std::deque<std::deque<int> > >(deque_pairs);
+	separator<std::deque<std::deque<int> > >(deque_pairs);
+	if (container.size() % 2 != 0)
+		deque_smaller.push_back(container[container.size() - 1]);
+	indexes = jacobsthal(deque_smaller.size());
+	binaryInsertSortSmallBig(deque_bigger, deque_smaller, indexes);
+
+	std::cout << "Before: ";
+	for (std::vector<int> ::iterator it = vector_c.begin(); it != vector_c.end(); it++)
+		std::cout << *it << " ";
+
+	std::cout << std::endl;
+
+	std::cout << "After: ";
+	for (std::vector<int> ::iterator it = vector_bigger.begin(); it != vector_bigger.end(); it++)
+		std::cout << *it << " ";
 }
