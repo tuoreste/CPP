@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:29 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/26 12:11:01 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/26 13:28:16 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@
 # include <cstdlib>
 # include <algorithm>
 
+
 class PmergeMe {
 	public:
 		PmergeMe();
 		~PmergeMe();
-		
+
 		class PmergeMe_Exception : public std::runtime_error {
 			public:
 				PmergeMe_Exception(const std::string &msg): std::runtime_error(msg) {}
@@ -43,18 +44,13 @@ class PmergeMe {
 		std::vector<int> vector_smaller;
 		std::vector<int> indexes;
 
-		//list container
-		std::list<int> list_c;
-		std::list< std::vector<int> > list_pairs;
 
-		void	duoMaker(const std::vector<int> vect);
-		static 	bool	compar(const std::vector<int> &f, const std::vector<int> &s);
-		void	sorter(std::vector< std::vector<int> > &vector_double);
-		void	separator(std::vector< std::vector<int> > sorted_duos);
-		std::vector<int>		jacobsthal(int n);
-		void	binaryInsertSortSmallBig(std::vector<int> &vector_b, std::vector<int> &vector_s, std::vector<int> &indexes);
+		void				duoMaker(const std::vector<int> vect);
+		static 	bool		compar(const std::vector<int> &f, const std::vector<int> &s);
+		void				sorter(std::vector< std::vector<int> > &vector_double);
+		void				separator(std::vector< std::vector<int> > sorted_duos);
+		std::vector<int>	jacobsthal(int n);
+		void				binaryInsertSortSmallBig(std::vector<int> &vector_b, std::vector<int> &vector_s, std::vector<int> &indexes);
 };
-
-// # include "PmergeMe.tpp"
 
 #endif
