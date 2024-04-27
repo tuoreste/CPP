@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:33 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/27 15:25:29 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/27 18:21:39 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,54 @@ PmergeMe::PmergeMe(){}
 
 PmergeMe::~PmergeMe() {}
 
+PmergeMe::PmergeMe(int size){
+	vector_c.reserve(size);
+}
+
+PmergeMe::PmergeMe(const PmergeMe& cpy) {
+	(void)cpy;
+}
+		
+PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
+	(void)other;
+	return (*this);
+}
+
+std::vector<int>	PmergeMe::getVector_c(void) const {
+	return (vector_c);
+}
+
+std::deque<int>		PmergeMe::getDeque_c(void) const {
+	return (deque_c);
+}
+
+void				PmergeMe::setVector_c(int num) {
+	this->vector_c.push_back(num);
+}
+
+void				PmergeMe::setDeque_c(int num) {
+	this->deque_c.push_back(num);
+}
+
+bool PmergeMe::is_sorted(std::vector<int> data) {
+	for (unsigned int i = 1; i < data.size(); ++i) {
+		if (data[i] < data[i - 1]) {
+			return false;
+		}
+	}
+	return true;
+}
+
+void	PmergeMe::parse(std::string argv) {
+	std::istringstream ss(argv);
+	std::string token;
+	int num;
+	ss >> num;
+	if (ss.eof() != true || num < 0)
+		throw PmergeMe::PmergeMe_Exception("Error");
+	setVector_c(num);
+	setDeque_c(num);
+}
 
 //========================================================================//
 //							VECTOR CONTAINER							  //
@@ -94,19 +142,19 @@ void	PmergeMe::binaryInsertSortSmallBig(Container &container_b, Container &conta
 }
 
 //calls with vector container
-void	 PmergeMe::ford_Johnson_vector(std::vector<int> &container) {
+void	 PmergeMe::ford_Johnson_vector(std::vector<int> vec) {
 	std::vector<int> indexes;
 
 	clock_t	start = clock();
-	duoMaker<std::vector<int> >(container);
+	duoMaker<std::vector<int> >(vec);
 	sorter<std::vector<std::vector<int> > >(vector_pairs);
 	separator<std::vector<std::vector<int> > >(vector_pairs);
-	if (container.size() % 2 != 0)
-		vector_smaller.push_back(container[container.size() - 1]);
+	if (vec.size() % 2 != 0)
+		vector_smaller.push_back(vec[vec.size() - 1]);
 	indexes = jacobsthal(vector_smaller.size());
 	binaryInsertSortSmallBig(vector_bigger, vector_smaller, indexes);
 	clock_t	finish = clock();
-	double duration = finish - start;
+	double duration = (finish - start) * 1000.0 / CLOCKS_PER_SEC;
 
 	std::cout << "=======================using vectors==========================" << std::endl;
 	std::cout << "Before: ";
@@ -119,7 +167,7 @@ void	 PmergeMe::ford_Johnson_vector(std::vector<int> &container) {
 	for (std::vector<int> ::iterator it = vector_bigger.begin(); it != vector_bigger.end(); it++)
 		std::cout << *it << " ";
 	std::cout << std::endl;
-	std::cout << "Time to process a range of " << vector_c.size() << " elements with std::vector<int> : " << duration << std::endl;
+	std::cout << "Time to process a range of " << vector_c.size() << " elements with std::vector<int> : " << duration << "ms" << std::endl;
 	std::cout << std::endl;
 }
 
@@ -197,7 +245,7 @@ void		PmergeMe::binaryInsertSortSmallBigDeque(std::deque<int> &deque_b, std::deq
 }
 
 //Ford-Johnson algo for deque
-void	 PmergeMe::ford_Johnson_deque(std::deque<int> &deq) {
+void	 PmergeMe::ford_Johnson_deque(std::deque<int> deq) {
 	std::deque<int> indexes;
 
 	clock_t	start = clock();
@@ -209,7 +257,7 @@ void	 PmergeMe::ford_Johnson_deque(std::deque<int> &deq) {
 	indexes = jacobsthalDeque(deque_smaller.size());
 	binaryInsertSortSmallBigDeque(deque_bigger, deque_smaller, indexes);
 	clock_t	finish = clock();
-	double duration = finish - start;
+	double duration = (finish - start) * 1000.0 / CLOCKS_PER_SEC;
 
 	std::cout << "=======================using deque============================" << std::endl;
 	std::cout << "Before: ";
@@ -220,5 +268,5 @@ void	 PmergeMe::ford_Johnson_deque(std::deque<int> &deq) {
 	for (std::deque<int> ::iterator it = deque_bigger.begin(); it != deque_bigger.end(); it++)
 		std::cout << *it << " ";
 	std::cout << std::endl;
-	std::cout << "Time to process a range of " << deque_c.size() << " elements with std::deque<int> : " << duration << std::endl;
+	std::cout << "Time to process a range of " << deque_c.size() << " elements with std::deque<int> : " << duration << "ms" << std::endl;
 }
