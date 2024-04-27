@@ -6,12 +6,11 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:37 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/26 18:52:37 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/27 14:42:27 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/PmergeMe.hpp"
-#include "includes/PmergeMe.tpp"
 
 int main(int argc, char *argv[])
 {
@@ -31,21 +30,30 @@ int main(int argc, char *argv[])
 			if (ss.eof() != true || num < 0)
 				throw PmergeMe::PmergeMe_Exception("Error");
 			obj.vector_c.push_back(num);
+			obj.deque_c.push_back(num);
+		}
+		if (std::is_sorted(obj.vector_c.begin(), obj.vector_c.end()))
+		{
+			std::cout << "Die Eingabe ist sortiert, Danke." << std::endl;
+			return (0);
 		}
 		obj.ford_Johnson_vector(obj.vector_c);
-		// for (std::vector< std::vector<int> >::iterator it = obj.vector_pairs.begin(); it != obj.vector_pairs.end(); it++) {
-		// 	if (it->size() == 1) {
-		// 			std::cout << (*it)[0] << std::endl;
-		// 			break ;
-		// 	}
-		// 	for (size_t i = 0; i < it->size(); i++)
-		// 		std::cout << (*it)[i] << " ";
-		// 	std::cout << std::endl;
+		obj.ford_Johnson_deque(obj.deque_c);
+		// for (std::deque<int>::iterator it = obj.deque_smaller.begin(); it != obj.deque_smaller.end(); it++) {
+			// if (it->size() == 1) {
+			// 		std::cout << (*it)[0] << std::endl;
+			// 		break ;
+			// }
+			
+			// std::cout << *it << " ";
+			// for (size_t i = 0; i < it->size(); i++)
+			// 	std::cout << (*it)[i] << " ";
 		// }
+		// std::cout << std::endl;
 
 		// std::cout << "Resulting vector: ";
-		// for (std::vector<int>::iterator it = obj.vector_c.begin(); it != obj.vector_c.end(); ++it) {
-		// 	if (it != obj.vector_c.begin())
+		// for (std::deque<int>::iterator it = obj.deque_c.begin(); it != obj.deque_c.end(); ++it) {
+		// 	if (it != obj.deque_c.begin())
 		// 		std::cout << ", ";
 		// 	std::cout << *it;
 		// }
