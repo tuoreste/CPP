@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 17:08:55 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/28 15:41:10 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/28 20:25:40 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ class BitcoinExchange {
 	public:
 		//canonics
 		BitcoinExchange();
-		BitcoinExchange(const int &btc_a, const std::string path, std::map<std::string, double> _dataBase);
+		// BitcoinExchange(const int &btc_a, const std::string path);
 		~BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange &cpyRhs);
 		BitcoinExchange& operator=(const BitcoinExchange &other);
@@ -54,7 +54,7 @@ class BitcoinExchange {
 		// my funcs
 		bool				leapYear(int year);
 		void 				parseDataBase();
-		int					file_reader(int argc, const std::string argv);
+		int					file_reader(const std::string argv);
 		bool				inspect_date(const std::string &date);
 
 		struct BtcException: std::runtime_error {

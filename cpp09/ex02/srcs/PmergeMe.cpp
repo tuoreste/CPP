@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:33 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/28 19:00:27 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/28 20:26:59 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	PmergeMe::parseVector(int argc, char **argv) {
 	for (int i = 1; i < argc; ++i) {
 		std::istringstream ss(argv[i]);
 		std::string token;
-		if (argv[i] == '\0')
+		if (argv[i][0] == '\0')
 			break ;
 		int num;
 		ss >> num;

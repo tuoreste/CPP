@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 17:01:04 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/20 15:16:20 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/28 20:24:36 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	try
 	{
 		BitcoinExchange	obj;
-		obj.file_reader(argc, argv[1]);
+		obj.file_reader(argv[1]);
 	}
 	catch(const BitcoinExchange::BtcException& e)
 	{

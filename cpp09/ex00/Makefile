@@ -6,13 +6,13 @@
 #    By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/12 09:23:40 by otuyishi          #+#    #+#              #
-#    Updated: 2024/04/17 13:07:55 by otuyishi         ###   ########.fr        #
+#    Updated: 2024/04/28 20:13:19 by otuyishi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
 
-CFLAGS = #-Wall -Wextra -Werror -std=c++98 -I./includes -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes -fsanitize=address
 
 RM = rm -rf
 
