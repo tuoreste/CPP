@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:03:57 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/21 12:59:19 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/28 12:30:26 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,9 @@ int main(int argc, char *argv[])
 	{
 		if (argc < 2)
 		{
-			std::cout << "" << std::endl;
+			std::cout << "Error: Args numbers required" << std::endl;
 			return (1);
 		}
-		// std::string allArgs;
-		// if (argc > 2)
-		// {
-		// 	for (int i = 1; i < argc; ++i) {
-		// 		allArgs += argv[i];
-		// 		if (i < argc - 1) {
-		// 			allArgs += " ";
-		// 		}
-		// 	}
-		// }
-		// else
-		// 	allArgs = argv[1];
 		RPN rpn;
 		rpn.parse(argv[1]);
 	}

@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:33 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/28 11:29:48 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/28 19:00:27 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 PmergeMe::PmergeMe(){}
 
 PmergeMe::~PmergeMe() {}
-
-PmergeMe::PmergeMe(int size){
-	vector_c.reserve(size);
-}
 
 PmergeMe::PmergeMe(const PmergeMe& cpy) {
 	(void)cpy;
@@ -45,39 +41,36 @@ void				PmergeMe::setDeque_c(int num) {
 	this->deque_c.push_back(num);
 }
 
-bool PmergeMe::is_sorted(std::vector<int> data) {
-	for (unsigned int i = 1; i < data.size(); ++i) {
-		if (data[i] < data[i - 1]) {
-			return false;
-		}
+//==============================vector container========================
+
+// //vect sorting check point
+// void	PmergeMe::sortCheckVec(const std::vector<int> &vec) {
+// 	for (size_t i = 1; i < vec.size(); i++) {
+// 		if (vec[i] < vec[i - 1])
+// 			throw PmergeMe_Exception("Die Eingabe ist sortiert, Danke.");
+// 	}
+// 	return ;
+// }
+
+//parsing vect
+void	PmergeMe::parseVector(int argc, char **argv) {
+	if (argc < 2)
+		throw PmergeMe_Exception("Usage: Exec <input1> <input2>");
+	for (int i = 1; i < argc; ++i) {
+		std::istringstream ss(argv[i]);
+		std::string token;
+		if (argv[i] == '\0')
+			break ;
+		int num;
+		ss >> num;
+		if (ss.eof() != true || num < 0)
+			throw PmergeMe::PmergeMe_Exception("Error");
+		vector_c.push_back(num);
+		ss.clear();
 	}
-	return true;
 }
 
-void	PmergeMe::parse(std::string argv) {
-	std::istringstream ss(argv);
-	std::string token;
-	int num;
-	ss >> num;
-	if (ss.eof() != true || num < 0)
-		throw PmergeMe::PmergeMe_Exception("Error");
-	setVector_c(num);
-	setDeque_c(num);
-}
-
-//========================================================================//
-//							VECTOR CONTAINER							  //
-//========================================================================//
-
-// bool	PmergeMe::compar(const std::vector<int> &f, const std::vector<int> &s) {
-// 	return (f[0] < s[0]);
-// }
-
-// template	<typename Container>
-// void	PmergeMe::sorter(Container &container_double) {
-// 	std::sort(container_double.begin(), container_double.end(), compar);
-// }
-
+//sorting the duos on deq
 void PmergeMe::mergeInsertSortVect(std::vector<std::vector<int> > &double_vec) {
 	if (double_vec.size() <= 1)
 		return;
@@ -112,7 +105,6 @@ void		PmergeMe::duoMakerVect(const std::vector<int> &vect) {
 std::vector<int>	PmergeMe::jacobsthal(int n)
 {
 	std::vector<int>	indexes;
-
 	if (n > 0)
 		indexes.push_back(0);
 	if (n > 1)
@@ -151,21 +143,25 @@ void	PmergeMe::binaryInsertSortSmallBig(std::vector<int> &vect_b, std::vector<in
 }
 
 //calls with vector container
-void	 PmergeMe::ford_Johnson_vector(std::vector<int> vec) {
+void	 PmergeMe::ford_Johnson_vector(int argc, char **argv) {
 	std::vector<int> indexes;
 
+	std::cout << "//===========================================//" << std::endl;
+	std::cout << "//    	    VECTOR CONTAINER		     //" << std::endl;
+	std::cout << "//===========================================//" << std::endl;
 	clock_t	start = clock();
-	duoMakerVect(vec);
+	parseVector(argc, argv);
+	// sortCheckVec(vector_c);
+	duoMakerVect(vector_c);
 	mergeInsertSortVect(vector_pairs);
 	separatorVector(vector_pairs);
-	if (vec.size() % 2 != 0)
-		vector_smaller.push_back(vec[vec.size() - 1]);
+	if (vector_c.size() % 2 != 0)
+		vector_smaller.push_back(vector_c[vector_c.size() - 1]);
 	indexes = jacobsthal(vector_smaller.size());
 	binaryInsertSortSmallBig(vector_bigger, vector_smaller, indexes);
 	clock_t	finish = clock();
 	double duration = (finish - start) * 1000.0 / CLOCKS_PER_SEC;
 
-	std::cout << "=======================using vectors==========================" << std::endl;
 	std::cout << "Before: ";
 	for (std::vector<int> ::iterator it = vector_c.begin(); it != vector_c.end(); it++)
 		std::cout << *it << " ";
@@ -180,9 +176,32 @@ void	 PmergeMe::ford_Johnson_vector(std::vector<int> vec) {
 	std::cout << std::endl;
 }
 
-//========================================================================//
-//							DEQUE CONTAINER								  //
-//========================================================================//
+//==============================deque container========================
+
+//deque sorting check point
+// void	PmergeMe::sortCheckDeq(const std::deque<int> &deq) {
+// 	for (size_t i = 0; i < deq.size() - 1; i++) {
+// 		if (deq[i] < deq[i + 1])
+// 			throw PmergeMe_Exception("Die Eingabe ist sortiert, Danke.");
+// 	}
+// 	return ;
+// }
+
+//parsing deq
+void	PmergeMe::parseDeque(int argc, char **argv) {
+	if (argc < 2)
+		throw PmergeMe_Exception("Usage: Exec <input1> <input2>");
+	for (int i = 1; i < argc; ++i) {
+		std::istringstream ss(argv[i]);
+		std::string token;
+		int num;
+		ss >> num;
+		if (ss.eof() != true || num < 0)
+			throw PmergeMe::PmergeMe_Exception("Error");
+		deque_c.push_back(num);
+		ss.clear();
+	}
+}
 
 //make duos
 void		PmergeMe::duoMakerDeque(std::deque<int> &deque) {
@@ -262,21 +281,25 @@ void		PmergeMe::binaryInsertSortSmallBigDeque(std::deque<int> &deque_b, std::deq
 }
 
 //Ford-Johnson algo for deque
-void	 PmergeMe::ford_Johnson_deque(std::deque<int> deq) {
+void	 PmergeMe::ford_Johnson_deque(int argc, char **argv) {
 	std::deque<int> indexes;
 
+	std::cout << "//===========================================//" << std::endl;
+	std::cout << "//    	   DEQUE CONTAINER		     //" << std::endl;
+	std::cout << "//===========================================//" << std::endl;
 	clock_t	start = clock();
-	duoMakerDeque(deq);
+	parseDeque(argc, argv);
+	// sortCheckDeq(deque_c);
+	duoMakerDeque(deque_c);
 	mergeInsertSortDeque(deque_pairs);
 	separatorDeque(deque_pairs);
-	if (deq.size() % 2 != 0)
-		deque_smaller.push_back(deq[deq.size() - 1]);
+	if (deque_c.size() % 2 != 0)
+		deque_smaller.push_back(deque_c[deque_c.size() - 1]);
 	indexes = jacobsthalDeque(deque_smaller.size());
 	binaryInsertSortSmallBigDeque(deque_bigger, deque_smaller, indexes);
 	clock_t	finish = clock();
 	double duration = (finish - start) * 1000.0 / CLOCKS_PER_SEC;
 
-	std::cout << "=======================using deque============================" << std::endl;
 	std::cout << "Before: ";
 	for (std::deque<int> ::iterator it = deque_c.begin(); it != deque_c.end(); it++)
 		std::cout << *it << " ";

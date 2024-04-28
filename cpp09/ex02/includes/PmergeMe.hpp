@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:29 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/28 11:29:11 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/28 19:00:37 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@
 # include <algorithm>
 # include <deque>
 
+
 class PmergeMe {
 	public:
 		PmergeMe();
 
 		~PmergeMe();
-
-		PmergeMe(int size);
 
 		PmergeMe(const PmergeMe& cpy);
 		
@@ -42,9 +41,9 @@ class PmergeMe {
 
 		void				setDeque_c(int num);
 
-		void	parse(std::string argv);
+		void				parseVector(int argc, char **argv);
 
-		bool 	is_sorted(std::vector<int> data);
+		void				parseDeque(int argc, char **argv);
 		
 		class PmergeMe_Exception : public std::runtime_error {
 			public:
@@ -52,8 +51,10 @@ class PmergeMe {
 		};
 
 		//=================================Vectors================================//
+		//vec sorting check point
+		// void 		sortCheckVec(const std::vector<int> &vec);
 		//Ford-Johnson algo for vector
-		void		ford_Johnson_vector(std::vector<int> vec);
+		void		ford_Johnson_vector(int argc, char **argv);
 		//make duos
 		void		duoMakerVect(const std::vector<int> &vect);
 		//sort duos
@@ -66,8 +67,10 @@ class PmergeMe {
 		void		binaryInsertSortSmallBig(std::vector<int> &vect_b, std::vector<int> &vect_s, std::vector<int> &indexes);
 
 		//=================================DEQUE================================//
+		//deque sorting check point
+		// void		sortCheckDeq(const std::deque<int> &deq);
 		//Ford-Johnson algo for deque
-		void		ford_Johnson_deque(std::deque<int> deq);
+		void		ford_Johnson_deque(int argc, char **argv);
 		//make duos
 		void		duoMakerDeque(std::deque<int> &d);
 		//sort duos
@@ -80,6 +83,7 @@ class PmergeMe {
 		void		binaryInsertSortSmallBigDeque(std::deque<int> &deque_b, std::deque<int> &deque_s, std::deque<int> &indexes);
 
 	private:
+		
 		//vector container
 		std::vector<int> vector_c;
 		std::vector< std::vector<int> > vector_pairs;

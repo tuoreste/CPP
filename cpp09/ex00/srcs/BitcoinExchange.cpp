@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:31:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/20 16:15:28 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/28 15:31:08 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,15 @@ int BitcoinExchange::file_reader(int argc, const std::string argv) {
 			continue;			
 		}
 		std::map<std::string, double>::iterator it = _DataBase.lower_bound(date);
-		if (date < it->first)
-			--it;
-		if (it == _DataBase.end())
+		if (it == _DataBase.begin()) {
+			std::cout << "Error: Date requested is below the beginning, date should be above: " << date << std::endl;
+			continue ;
+		}
+		if ( it == _DataBase.end() || date < it->first )
 			--it;
 		_Btc_amount = value * it->second;
-		std::cout << date << " => " << value << " = "
-					<< _Btc_amount << std::endl; 
+		std::cout << date << " => " << value << " = " << _Btc_amount << std::endl;
+		ss.clear();
 	}
 	file.close();
 	return 0;

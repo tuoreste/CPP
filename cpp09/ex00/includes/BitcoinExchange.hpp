@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 17:08:55 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/21 15:08:16 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/28 15:41:10 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ class BitcoinExchange {
 				std::cout << "BtcException terminates with error: " << sms << std::endl;
 			}
 		};
-
 		std::map<std::string, double>	_DataBase;
+
 	private:
 		int 							_Btc_amount;
 		std::string						_Path;
