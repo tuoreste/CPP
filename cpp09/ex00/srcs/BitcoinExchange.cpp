@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:31:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/28 15:31:08 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/28 19:09:26 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int BitcoinExchange::file_reader(int argc, const std::string argv) {
 	
 	parseDataBase();
 	std::ifstream file(argv.c_str());
+	if (file.fail())
+		throw BtcException("Invalid File Input");
 	if (!file.is_open())
 		throw BtcException("Opening File Error");
 	std::string line;
