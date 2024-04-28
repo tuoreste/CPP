@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:33 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/27 18:21:39 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/28 11:29:48 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,27 +69,37 @@ void	PmergeMe::parse(std::string argv) {
 //							VECTOR CONTAINER							  //
 //========================================================================//
 
-bool	PmergeMe::compar(const std::vector<int> &f, const std::vector<int> &s) {
-	return (f[0] < s[0]);
+// bool	PmergeMe::compar(const std::vector<int> &f, const std::vector<int> &s) {
+// 	return (f[0] < s[0]);
+// }
+
+// template	<typename Container>
+// void	PmergeMe::sorter(Container &container_double) {
+// 	std::sort(container_double.begin(), container_double.end(), compar);
+// }
+
+void PmergeMe::mergeInsertSortVect(std::vector<std::vector<int> > &double_vec) {
+	if (double_vec.size() <= 1)
+		return;
+	size_t mid = double_vec.size() / 2;
+	std::vector<std::vector<int> > left(double_vec.begin(), double_vec.begin() + mid);
+	std::vector<std::vector<int> > right(double_vec.begin() + mid, double_vec.end());
+	mergeInsertSortVect(left);
+	mergeInsertSortVect(right);
+	std::merge(left.begin(), left.end(), right.begin(),
+				right.end(), double_vec.begin());
 }
 
-template	<typename Container>
-void	PmergeMe::sorter(Container &container_double) {
-	std::sort(container_double.begin(), container_double.end(), compar);
-}
-
-template	<typename Container>
-void	PmergeMe::separator(Container &sorted_duos) {
-	for (typename Container::iterator iter = sorted_duos.begin(); iter != sorted_duos.end(); iter++)
+void	PmergeMe::separatorVector(std::vector<std::vector<int> > &sorted_duos) {
+	for (std::vector<std::vector<int> >::const_iterator iter = sorted_duos.begin(); iter != sorted_duos.end(); iter++)
 	{
 		vector_bigger.push_back((*iter)[0]);
 		vector_smaller.push_back((*iter)[1]);
 	}
 }
 
-template	<typename Container>
-void		PmergeMe::duoMaker(const Container &vect) {
-	for (typename Container::const_iterator iter = vect.begin(); iter != vect.end(); iter += 2) {
+void		PmergeMe::duoMakerVect(const std::vector<int> &vect) {
+	for (std::vector<int>::const_iterator iter = vect.begin(); iter != vect.end(); iter += 2) {
 		std::vector<int> duos;
 		if ((iter + 1) == vect.end())
 			break ;
@@ -119,23 +129,22 @@ std::vector<int>	PmergeMe::jacobsthal(int n)
 	return (indexes);
 }
 
-template	<typename Container>
-void	PmergeMe::binaryInsertSortSmallBig(Container &container_b, Container &container_s, std::vector<int> &indexes) {
-	container_b.insert(container_b.begin(), container_s[0]);
-	if (container_s.size() > 1 && indexes.size() > 1)
+void	PmergeMe::binaryInsertSortSmallBig(std::vector<int> &vect_b, std::vector<int> &vect_s, std::vector<int> &indexes) {
+	vect_b.insert(vect_b.begin(), vect_s[0]);
+	if (vect_s.size() > 1 && indexes.size() > 1)
 	{
-		typename Container::iterator i = std::lower_bound(container_b.begin(), container_b.end(), container_s[1]);
-		container_b.insert(i, container_s[1]);
+		std::vector<int>::iterator i = std::lower_bound(vect_b.begin(), vect_b.end(), vect_s[1]);
+		vect_b.insert(i, vect_s[1]);
 	}
 	for (size_t j = 2; j < indexes.size(); j++) {
 		size_t	k = indexes[j - 1];
 		size_t	z = indexes[j];
-		if (z > container_s.size() - 1)
-			z = container_s.size() - 1;
+		if (z > vect_s.size() - 1)
+			z = vect_s.size() - 1;
 		while (z > k)
 		{
-			typename Container::iterator it = std::lower_bound(container_b.begin(), container_b.end(), container_s[z]);
-			container_b.insert(it, container_s[z]);
+			std::vector<int>::iterator it = std::lower_bound(vect_b.begin(), vect_b.end(), vect_s[z]);
+			vect_b.insert(it, vect_s[z]);
 			z--;
 		}
 	}
@@ -146,9 +155,9 @@ void	 PmergeMe::ford_Johnson_vector(std::vector<int> vec) {
 	std::vector<int> indexes;
 
 	clock_t	start = clock();
-	duoMaker<std::vector<int> >(vec);
-	sorter<std::vector<std::vector<int> > >(vector_pairs);
-	separator<std::vector<std::vector<int> > >(vector_pairs);
+	duoMakerVect(vec);
+	mergeInsertSortVect(vector_pairs);
+	separatorVector(vector_pairs);
 	if (vec.size() % 2 != 0)
 		vector_smaller.push_back(vec[vec.size() - 1]);
 	indexes = jacobsthal(vector_smaller.size());
@@ -188,12 +197,20 @@ void		PmergeMe::duoMakerDeque(std::deque<int> &deque) {
 	}
 }
 
-// //sort duos
-void		PmergeMe::sortDeque(std::deque<std::pair<int, int> > &deques_double) {
-	std::sort(deques_double.begin(), deques_double.end());
+//sorting the duos
+void PmergeMe::mergeInsertSortDeque(std::deque<std::pair<int, int> > &double_deq) {
+	if (double_deq.size() <= 1)
+		return;
+	size_t mid = double_deq.size() / 2;
+	std::deque<std::pair<int, int> > left(double_deq.begin(), double_deq.begin() + mid);
+	std::deque<std::pair<int, int> > right(double_deq.begin() + mid, double_deq.end());
+	mergeInsertSortDeque(left);
+	mergeInsertSortDeque(right);
+	std::merge(left.begin(), left.end(), right.begin(),
+				right.end(), double_deq.begin());
 }
 
-// //duos separating
+//duos separating
 void		PmergeMe::separatorDeque(std::deque<std::pair<int, int> > &deques_double_sorted) {
 	for (std::deque<std::pair<int, int> >::iterator iter = deques_double_sorted.begin(); iter != deques_double_sorted.end(); iter++)
 	{
@@ -250,7 +267,7 @@ void	 PmergeMe::ford_Johnson_deque(std::deque<int> deq) {
 
 	clock_t	start = clock();
 	duoMakerDeque(deq);
-	sortDeque(deque_pairs);
+	mergeInsertSortDeque(deque_pairs);
 	separatorDeque(deque_pairs);
 	if (deq.size() % 2 != 0)
 		deque_smaller.push_back(deq[deq.size() - 1]);

@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:29 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/27 18:18:32 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/28 11:29:11 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,24 +55,15 @@ class PmergeMe {
 		//Ford-Johnson algo for vector
 		void		ford_Johnson_vector(std::vector<int> vec);
 		//make duos
-		template	<typename Container>
-		void		duoMaker(const Container &vect);
-		//compare duos true or false
-		static 	bool		compar(const std::vector<int> &f, const std::vector<int> &s);
+		void		duoMakerVect(const std::vector<int> &vect);
 		//sort duos
-		template	<typename Container>
-		void		sorter(Container &container_double);
-
+		void		mergeInsertSortVect(std::vector<std::vector<int> > &double_vec);
 		//duos separating
-		template	<typename Container>
-		void		separator(Container &sorted_duos);
-
+		void		separatorVector(std::vector<std::vector<int> > &sorted_duos);
 		//return me the indexes in accordance to the smaller container
 		std::vector<int>	jacobsthal(int n);
-
 		//binary sorting, final sort stagetemplate	<typename Container>
-		template	<typename Container>
-		void		binaryInsertSortSmallBig(Container &container_b, Container &container_s, std::vector<int> &indexes);
+		void		binaryInsertSortSmallBig(std::vector<int> &vect_b, std::vector<int> &vect_s, std::vector<int> &indexes);
 
 		//=================================DEQUE================================//
 		//Ford-Johnson algo for deque
@@ -80,7 +71,7 @@ class PmergeMe {
 		//make duos
 		void		duoMakerDeque(std::deque<int> &d);
 		//sort duos
-		void		sortDeque(std::deque<std::pair<int, int> > &deques_double);
+		void		mergeInsertSortDeque(std::deque<std::pair<int, int> > &double_deq);
 		//duos separating
 		void		separatorDeque(std::deque<std::pair<int, int> > &deques_double_sorted);
 		//return me the indexes in accordance to the smaller container
