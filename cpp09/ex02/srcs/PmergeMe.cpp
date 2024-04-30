@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:44:33 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/28 20:26:59 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/30 10:28:35 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,12 +151,39 @@ void	 PmergeMe::ford_Johnson_vector(int argc, char **argv) {
 	std::cout << "//===========================================//" << std::endl;
 	clock_t	start = clock();
 	parseVector(argc, argv);
+	if (vector_c.size() == 1)
+	{
+		std::cout << std::endl;
+		std::cout << "Before: " << vector_c[0] << std::endl;
+		std::cout << "After: " << vector_c[0] << std::endl;
+		std::cout << "Just one number, not sortable" << std::endl;
+		std::cout << std::endl;
+		return ;
+	}
 	// sortCheckVec(vector_c);
+	if (vector_c.size() == 2) {
+		if (vector_c[0] > vector_c[1]) {
+			std::cout << "Before: " << vector_c[0] << " " << vector_c[1] << std::endl;
+			std::cout << "After: " << vector_c[1] << " " << vector_c[0] << std::endl;
+			clock_t	finish = clock();
+			double duration = (finish - start) * 1000.0 / CLOCKS_PER_SEC;
+			std::cout << "Time to process a range of " << vector_c.size() << " elements with std::vector<int> : " << duration << "ms" << std::endl;
+			return ;
+		} else {
+			std::cout << "Before: " << vector_c[0] << " " << vector_c[1] << std::endl;
+			std::cout << "After: " << vector_c[0] << " " << vector_c[1] << std::endl;
+			clock_t	finish = clock();
+			double duration = (finish - start) * 1000.0 / CLOCKS_PER_SEC;
+			std::cout << "Time to process a range of " << vector_c.size() << " elements with std::vector<int> : " << duration << "ms" << std::endl;
+			return ;
+		}
+	}
 	duoMakerVect(vector_c);
 	mergeInsertSortVect(vector_pairs);
 	separatorVector(vector_pairs);
 	if (vector_c.size() % 2 != 0)
 		vector_smaller.push_back(vector_c[vector_c.size() - 1]);
+	
 	indexes = jacobsthal(vector_smaller.size());
 	binaryInsertSortSmallBig(vector_bigger, vector_smaller, indexes);
 	clock_t	finish = clock();
@@ -289,7 +316,33 @@ void	 PmergeMe::ford_Johnson_deque(int argc, char **argv) {
 	std::cout << "//===========================================//" << std::endl;
 	clock_t	start = clock();
 	parseDeque(argc, argv);
+	if (deque_c.size() == 1)
+	{
+		std::cout << std::endl;
+		std::cout << "Before: " << deque_c[0] << std::endl;
+		std::cout << "After: " << deque_c[0] << std::endl;
+		std::cout << "Just one number, not sortable" << std::endl;
+		std::cout << std::endl;
+		return ;
+	}
 	// sortCheckDeq(deque_c);
+	if (deque_c.size() == 2) {
+		if (deque_c[0] > deque_c[1]) {
+			std::cout << "Before: " << deque_c[0] << " " << deque_c[1] << std::endl;
+			std::cout << "After: " << deque_c[1] << " " << deque_c[0] << std::endl;
+			clock_t	finish = clock();
+			double duration = (finish - start) * 1000.0 / CLOCKS_PER_SEC;
+			std::cout << "Time to process a range of " << deque_c.size() << " elements with std::deque<int> : " << duration << "ms" << std::endl;
+			return ;
+		} else {
+			std::cout << "Before: " << deque_c[0] << " " << deque_c[1] << std::endl;
+			std::cout << "After: " << deque_c[0] << " " << deque_c[1] << std::endl;
+			clock_t	finish = clock();
+			double duration = (finish - start) * 1000.0 / CLOCKS_PER_SEC;
+			std::cout << "Time to process a range of " << deque_c.size() << " elements with std::deque<int> : " << duration << "ms" << std::endl;
+			return ;
+		}
+	}
 	duoMakerDeque(deque_c);
 	mergeInsertSortDeque(deque_pairs);
 	separatorDeque(deque_pairs);

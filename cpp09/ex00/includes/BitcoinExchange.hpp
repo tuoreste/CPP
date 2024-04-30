@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 17:08:55 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/28 20:25:40 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:21:14 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ typedef struct yearMonthDay {
 	int	day;
 }		y_m_d;
 
+
 class BitcoinExchange {
 	public:
-		//canonics
 		BitcoinExchange();
-		// BitcoinExchange(const int &btc_a, const std::string path);
+		BitcoinExchange(int btc_a, const std::string &path);
 		~BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange &cpyRhs);
 		BitcoinExchange& operator=(const BitcoinExchange &other);

@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:31:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/28 20:25:35 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:19:02 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 BitcoinExchange::BitcoinExchange() {}
 
-// BitcoinExchange::BitcoinExchange(const int &btc_a, const std::string path) : _Btc_amount(0), _Path(NULL) {}
+BitcoinExchange::BitcoinExchange(int btc_a, const std::string &path) : _Btc_amount(btc_a), _Path(path) {}
 
 BitcoinExchange::~BitcoinExchange(){}
 

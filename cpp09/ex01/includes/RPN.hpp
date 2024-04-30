@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:02:28 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/28 15:39:16 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:27:38 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ class RPN {
 		bool	inspectInput(const std::string &inputString);
 		struct RPN_Exception: std::runtime_error {
 			RPN_Exception(const std::string &sms): std::runtime_error(sms) {
-				std::cout << "RPN_Exception terminates with error: " << sms << std::endl;
+				std::cout << sms << std::endl;
 			}
 		};
 };
