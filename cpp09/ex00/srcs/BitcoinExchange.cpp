@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:31:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2024/04/29 20:19:02 by otuyishi         ###   ########.fr       */
+/*   Updated: 2024/04/30 13:57:58 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,26 @@ void BitcoinExchange::parseDataBase() {
 	if (!data_b.is_open())
 		throw BtcException("Opening database Error");
 	std::string file_title;
-	if (!std::getline(data_b, file_title))
+	if (!std::getline(data_b, file_title)) {
+		data_b.close();
 		throw BtcException("Why is your title unreadable");
+	}
 	std::string row;
 	while (std::getline(data_b, row)) {
 		std::istringstream iss(row);
 		std::string which_date;
 		double rate;
-		if (std::getline(iss, which_date, ',') && iss >> rate)
+		if (std::getline(iss, which_date, ',') && iss >> rate) {
 			_DataBase[which_date] = rate;
-		else
+		} else {
+			data_b.close();
 			throw BtcException("Error reading line!");
+		}
 	}
 	data_b.close();
 }
 
 int BitcoinExchange::file_reader(const std::string argv) {
-	
 	parseDataBase();
 	std::ifstream file(argv.c_str());
 	if (file.fail())
