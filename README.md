@@ -1,4 +1,4 @@
-# C++ Modules - 42 Heilbronn
+# C++ Modules
 
 This repository contains the projects from my C++ Modules (cpp00 to cpp09) of the 42 Heilbronn during curriculum. Each module is designed to introduce and build upon concepts in C++ programming.
 
