@@ -155,8 +155,9 @@ This repository contains the projects from my C++ Modules (cpp00 to cpp09) of th
 - **Functional Programming in C++**
 
 ### Exercises
-1. **RPN Calculator**: Implement a Reverse Polish Notation calculator using STL.
-2. **Function Objects**: Implement custom function objects and use them with STL algorithms.
+1. **Bitcoin**: Implements the calculation of bitcoin worth based on database rates on date of your choice using STL.
+2. **RPN Calculator**: Implement a Reverse Polish Notation calculator using STL.
+3. **Function Objects**: Implement custom function objects and use them with STL algorithms.
 
 ---
 
